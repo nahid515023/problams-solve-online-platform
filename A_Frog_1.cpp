@@ -5,13 +5,9 @@ int n;
 int ar[100007];
 int fun(int i)
 {
-    int val = 0;
-    if (i >= n)
-    {
+    if (i < 0)
         return 0;
-    }
-    val = min(abs(fun(i + 1)-ar[i]), abs(fun(i + 2)-ar[i]));
-    return val;
+    return abs(fun(i-1)-ar[i]);
 }
 
 void solve()
@@ -22,7 +18,7 @@ void solve()
     {
         cin >> ar[i];
     }
-    int x = fun(0);
+    int x = fun(n - 1);
     cout << x << endl;
 }
 

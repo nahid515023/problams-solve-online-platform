@@ -6,21 +6,32 @@ void solve()
 {
     int n;
     cin >> n;
-    int ar[n];
-    bool ok = 0;
+    string s;
+    cin >> s;
+    queue<char> q;
     for (int i = 0; i < n; i++)
     {
-        cin >> ar[i];
-        if (ar[i] < 0)
+        q.push(s[i]);
+    }
+
+    char ch = q.front();
+    q.pop();
+
+    while (!q.empty())
+    {
+        char c = q.front();
+        q.pop();
+        if (c == ch)
         {
-            ok = 1;
+            cout << ch;
+            if (q.size() > 0)
+            {
+                ch = q.front();
+                q.pop();
+            }
         }
     }
-    sort(ar, ar + n);
-    if (ok == 0)
-        cout << ar[n - 1] << endl;
-    else
-        cout << ar[0] << endl;
+    cout<<endl;
 }
 
 int32_t main()

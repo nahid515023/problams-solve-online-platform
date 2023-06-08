@@ -4,23 +4,32 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int ar[n];
-    bool ok = 0;
+    int n, k, t;
+    cin >> n >> k >> t;
+    vector<int> a(n);
+    int ans = 0;
+    int val = 0;
+    int cnt = 0;
     for (int i = 0; i < n; i++)
     {
-        cin >> ar[i];
-        if (ar[i] < 0)
+        int x;
+        cin >> x;
+        if (x > t)
         {
-            ok = 1;
+            val = 0;
+            cnt = 0;
+        }
+        else
+        {
+            cnt++;
+        }
+        if (cnt >= k)
+        {
+            val++;
+            ans += val;
         }
     }
-    sort(ar, ar + n);
-    if (ok == 0)
-        cout << ar[n - 1] << endl;
-    else
-        cout << ar[0] << endl;
+    cout << ans << endl;
 }
 
 int32_t main()

@@ -7,56 +7,26 @@ void solve()
     int n;
     cin >> n;
     int ar[n];
-    int inx;
+    int inx[n + 1];
     for (int i = 0; i < n; i++)
     {
         cin >> ar[i];
-        if (ar[i] == 1)
-        {
-            inx = i;
-        }
+        inx[ar[i]] = i + 1;
     }
-    if (inx == 0 || inx == n - 1)
+    int one = inx[1];
+    int two = inx[2];
+    int last = inx[n];
+
+    if(last<min(one,two))
     {
-        if (inx == 0)
-        {
-            for (int i = 0; i < n; i++)
-            {
-                if (ar[i] == n)
-                {
-                    cout << 2 << " " << i + 1 << endl;
-                    return;
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < n; i++)
-            {
-                if (ar[i] == n)
-                {
-                    cout << n - 1 << " " << i + 1 << endl;
-                    return;
-                }
-            }
-        }
+        cout<<last<<" "<<min(one,two)<<endl;
     }
-    else
+    else if(last>max(one,two))
     {
-        if (ar[inx + 1] == n)
-        {
-            for (int i = 0; i < n; i++)
-            {
-                if (ar[i] == n-1)
-                {
-                    cout << inx << " " << i + 1 << endl;
-                    return;
-                }
-            }
-        }
-        else{
-            if
-        }
+        cout<<last<<" "<<max(one,two)<<endl;
+    }
+    else{
+        cout<<one<<" "<<two<<endl;
     }
 }
 
