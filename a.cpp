@@ -4,24 +4,23 @@ using namespace std;
 
 void solve()
 {
-    int a, b, x, y;
-    cin >> a >> b >> x >> y;
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    int p = 0, n = 0;
+    for(int i=0;i<n;i++)
+    {
+        cin>>v[i];
+        if(v[i]<0)
+        {
+            n++;
+        }
+        else{
+            p++;
+        }
+    }
 
-    int aa = a - x;
-    int bb = b - y;
-
-    if (aa < bb)
-    {
-        cout << "First" << endl;
-    }
-    else if (bb < aa)
-    {
-        cout << "Second" << endl;
-    }
-    else
-    {
-        cout << "Any" << endl;
-    }
+    
 }
 
 int32_t main()

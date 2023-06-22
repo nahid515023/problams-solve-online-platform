@@ -4,24 +4,19 @@ using namespace std;
 
 void solve()
 {
-    int a, b, x, y;
-    cin >> a >> b >> x >> y;
-
-    int aa = a - x;
-    int bb = b - y;
-
-    if (aa < bb)
+    int n;
+    cin >> n;
+    for (int i = 0; (1 << i) <= n; i++)
     {
-        cout << "First" << endl;
+        if((1<<i) & n)
+        {
+            cout<<1;
+        }
+        else{
+            cout<<0;
+        }
     }
-    else if (bb < aa)
-    {
-        cout << "Second" << endl;
-    }
-    else
-    {
-        cout << "Any" << endl;
-    }
+    cout<<endl;
 }
 
 int32_t main()
@@ -33,7 +28,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

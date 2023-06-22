@@ -4,24 +4,28 @@ using namespace std;
 
 void solve()
 {
-    int a, b, x, y;
-    cin >> a >> b >> x >> y;
-
-    int aa = a - x;
-    int bb = b - y;
-
-    if (aa < bb)
+    int n;
+    cin >> n;
+    multiset<int> ms;
+    int sum = 0;
+    int mul = 1;
+    for (int i = 0; i < n; i++)
     {
-        cout << "First" << endl;
+        int a;
+        cin >> a;
+        ms.insert(a);
+        sum += a;
+        mul *= a;
     }
-    else if (bb < aa)
+    int ans=0;
+    while (!ms.empty() && (sum < 0 || mul < 0))
     {
-        cout << "Second" << endl;
+        sum += 2;
+        mul *= -1;
+        ms.erase(ms.begin());
+        ans++;
     }
-    else
-    {
-        cout << "Any" << endl;
-    }
+    cout<<ans<<endl;
 }
 
 int32_t main()
