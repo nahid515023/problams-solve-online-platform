@@ -4,6 +4,16 @@ using namespace std;
 
 void solve()
 {
+    int n,k;
+    cin>>n>>k;
+    int l=1,r=n;
+    while(l<=r)
+    {
+        int mid = (l+r)/2;
+        
+    }
+
+
 }
 
 int32_t main()
