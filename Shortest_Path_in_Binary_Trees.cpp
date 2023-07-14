@@ -4,23 +4,18 @@ using namespace std;
 
 void solve()
 {
-    int n, d, h;
-    cin >> n >> d >> h;
-    int ar[n];
-    for (int i = 0; i < n; i++)
+    int x, y;
+    cin >> x >> y;
+    int cnt = 0;
+    while (x != y)
     {
-        cin >> ar[i];
+        if (x > y)
+            x /= 2;
+        else
+            y /= 2;
+        cnt++;
     }
-    double ans = .5 * d * h * n;
-    for (int i = 1; i < n; i++)
-    {
-        double y = h - (ar[i] - ar[i - 1]);
-        if (y > 0)
-        {
-            ans -= (1.0 * y * y / h * d / 2);
-        }
-    }
-    printf("%.10lf\n", ans);
+    cout << cnt << endl;
 }
 
 int32_t main()
