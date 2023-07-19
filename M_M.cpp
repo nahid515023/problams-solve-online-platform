@@ -4,8 +4,17 @@ using namespace std;
 
 void solve()
 {
-    bitset<6>st(-3);
-    cout<<st<<endl;
+    string s;
+    cin >> s;
+    sort(s.rbegin(), s.rend());
+    int i = 0;
+
+    while (s[i] == s[0] && i<s.size())
+    {
+        cout << s[i];
+        i++;
+    }
+    cout << endl;
 }
 
 int32_t main()

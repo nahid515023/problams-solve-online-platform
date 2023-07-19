@@ -6,88 +6,42 @@ void solve()
 {
     int n;
     cin >> n;
-    stack<int> st;
-    queue<int> qu;
-    priority_queue<int> pq;
-    int d = 0, cnt = 0, t = 0,xx=-1;
-    while (n--)
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+
+    int ans = 0;
+    int mi = v[n - 1];
+    int i = n - 2;
+    while (i >= 0)
     {
-        int a, b;
-        cin >> a >> b;
-        if (a == 1)
+        if (mi > v[i])
         {
-            st.push(b);
-            qu.push(b);
-            pq.push(b);
-            t++;
-            xx++;
+            mi = v[i];
         }
         else
         {
-
-            cnt++;
-            if(xx<0)
+            if (mi == 0)
             {
-                cout<<"impossible"<<endl;
+                cout << 1 << endl;
                 return;
             }
-
-            if (st.top() == b)
-            {
-                st.pop();
-            }
-            if (qu.front() == b)
-            {
-                qu.pop();
-            }
-            if (pq.top() == b)
-            {
-                pq.pop();
-            }
-            xx--;
+            ans += abs(v[i] - mi) + 1;
+            mi = abs(mi - 1);
         }
+        i--;
     }
-    int x = st.size();
-    int y = qu.size();
-    int z = pq.size();
-    cnt = t - cnt;
-    if (cnt < 0)
-    {
-        cout << "impossible" << endl;
-        return;
-    }
-
-    // cout<<x<<" "<<y<<" "<<z<<endl;
-    if (x != cnt && y != cnt && z != cnt)
-    {
-        cout << "impossible" << endl;
-    }
-    else if (x == cnt && y != cnt && z != cnt)
-    {
-        cout << "stack" << endl;
-    }
-    else if (x != cnt && y == cnt && z != cnt)
-    {
-        cout << "queue" << endl;
-    }
-    else if (x != cnt && y != cnt && z == cnt)
-    {
-        cout << "priority queue" << endl;
-    }
-    else
-    {
-        cout << "not sure" << endl;
-    }
+    cout << ans << endl;
 }
 
 int32_t main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
     int t = 1;
     // cin >> t;
     while (t--)

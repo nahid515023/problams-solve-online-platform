@@ -4,8 +4,8 @@ using namespace std;
 
 void solve()
 {
-    bitset<6>st(-3);
-    cout<<st<<endl;
+    int c, n, a;
+    cin >> c >> n >> a;
 }
 
 int32_t main()
