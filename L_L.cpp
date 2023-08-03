@@ -2,10 +2,30 @@
 using namespace std;
 #define int long long
 
+int f(int n, int p, int m)
+{
+    if (p == 0)
+        return 1;
+
+    int ans = f(n, p / 2, m);
+
+    if (p & 1)
+    {
+        ans = ans * ans * n;
+        ans %= m;
+    }
+    else
+    {
+        ans = ans * ans;
+        ans %= m;
+    }
+    return ans;
+}
+
 void solve()
 {
-    int c, n, a;
-    cin >> c >> n >> a;
+    
+    cout << f(45,50,70) << endl;
 }
 
 int32_t main()

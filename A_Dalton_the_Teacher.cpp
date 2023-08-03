@@ -6,20 +6,17 @@ void solve()
 {
     int n;
     cin >> n;
-    int s = 0, p = 0;
-    set<int> st;
+    vector<int> v(n);
+    int cnt = 0;
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-
-            if (x >= 0)
-                s += x;
-            else
-                p += x;
-
+        cin >> v[i];
+        if (v[i] == i + 1)
+        {
+            cnt++;
+        }
     }
-    cout << s - p << endl;
+    cout << (cnt + 1) / 2 << endl;
 }
 
 int32_t main()
@@ -31,7 +28,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

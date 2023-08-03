@@ -4,22 +4,14 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int s = 0, p = 0;
-    set<int> st;
-    for (int i = 0; i < n; i++)
+    int a, b, c;
+    cin >> a >> b >> c;
+    if (a + b >= 10 || b + c >= 10 || a + c >= 10)
     {
-        int x;
-        cin >> x;
-
-            if (x >= 0)
-                s += x;
-            else
-                p += x;
-
+        cout << "YES" << endl;
     }
-    cout << s - p << endl;
+    else
+        cout << "NO" << endl;
 }
 
 int32_t main()
@@ -31,7 +23,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

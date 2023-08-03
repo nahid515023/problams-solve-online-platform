@@ -6,20 +6,26 @@ void solve()
 {
     int n;
     cin >> n;
-    int s = 0, p = 0;
-    set<int> st;
-    for (int i = 0; i < n; i++)
+    int k;
+    cin >> k;
+
+    int ar[n + 5];
+    ar[0] = 0, ar[1] = 1;
+    int cnt = 2;
+
+    for (int i = 2; i <= n; i++)
     {
-        int x;
-        cin >> x;
-
-            if (x >= 0)
-                s += x;
-            else
-                p += x;
-
+        ar[i] = ar[i - 1] + ar[i - 2];
+        if (ar[i - 1] >= 1e9)
+            break;
+        cnt++;
     }
-    cout << s - p << endl;
+    cout<<cnt<<endl;
+    for (int i = 0; i <= cnt; i++)
+    {
+        cout << ar[i] << " ";
+    }
+    cout << endl;
 }
 
 int32_t main()

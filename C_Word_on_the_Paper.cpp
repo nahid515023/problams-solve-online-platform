@@ -4,22 +4,21 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int s = 0, p = 0;
-    set<int> st;
+    string sr;
+    int n=8;
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-
-            if (x >= 0)
-                s += x;
-            else
-                p += x;
-
+        for (int j = 0; j < n; j++)
+        {
+            char a;
+            cin >> a;
+            if (a != '.')
+            {
+                sr.push_back(a);
+            }
+        }
     }
-    cout << s - p << endl;
+    cout << sr << endl;
 }
 
 int32_t main()
@@ -31,7 +30,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

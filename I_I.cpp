@@ -4,64 +4,47 @@ using namespace std;
 
 void solve()
 {
-    int n, k, x;
-    cin >> n >> k >> x;
-    vector<int> v(n + 1, 0);
-    for (int i = 1; i <= n; i++)
-        cin >> v[i];
-    vector<pair<int, int>> ar;
-    for (int i = 2; i <= n; i++)
+    int n;
+    cin >> n;
+    if (n == 1)
     {
-        if (v[i] == x && v[i - 1] == x)
-            ar.push_back({i - 1, i});
+        cout << "1 3 0" << endl;
+        int a = 1, b = 3, c = 0;
+        // cout << ((a | b) & (b | c) & (a | c)) << endl;
+
+        return;
     }
-    int ans = 0, var = 0;
-    for (auto p : ar)
+    if (n & 1)
     {
-        int p1 = p.first;
-        int p2 = p.second;
-        while (p1 >= 1 && v[p1] == x)
-        {
-            var++;
-            p1--;
-        }
-        while (p2 <= n && v[p2] == x)
-        {
-            var++;
-            p2++;
-        }
-        int color;
-        int var2 = 0;
-        while (p1 >= 1 && p2 <= n)
-        {
-            color = v[p1];
-            while (p1 >= 1 && v[p1] == color)
-            {
-                var2++;
-                p1--;
-            }
-            while (p2 <= n && v[p2] == color)
-            {
-                var2++;
-                p2++;
-            }
-            if (var2 < 3)
-                break;
-            var += var2;
-            var2 = 0;
-        }
-        ans = max(ans, var);
-        var = 0;
+        int a = n;
+        int b = 1;
+        int c = n ^ 1;
+        cout << a << " " << b << " " << c << endl;
+        // cout << ((a | b) & (b | c) & (a | c)) << endl;
     }
-    cout << ans << endl;
+    else
+    {
+        int a = n;
+        int b = 1 << 27;
+        int c = n ^ 1;
+        cout << a << " " << b << " " << c << endl;
+        // cout << ((a | b) & (b | c) & (a | c)) << endl;
+    }
 }
 
 int32_t main()
 {
-// #ifndef ONLINE_JUDGE
-//     freopen("input.txt", "r", stdin);
-//     freopen("output.txt", "w", stdout);
-// #endif
-    solve();
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // #ifndef ONLINE_JUDGE
+    // freopen("input.txt", "r", stdin);
+    // freopen("output.txt", "w", stdout);
+    // #endif
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
     return 0;
 }

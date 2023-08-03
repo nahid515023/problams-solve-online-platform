@@ -4,17 +4,86 @@ using namespace std;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    sort(s.rbegin(), s.rend());
-    int i = 0;
-
-    while (s[i] == s[0] && i<s.size())
+    int n;
+    cin >> n;
+    string s[n];
+    for (int i = 0; i < n; i++)
+        cin >> s[i];
+    for (int i = 0; i < n; i++)
     {
-        cout << s[i];
-        i++;
+        int cnt = 0;
+        int cnt2 = 0;
+        int b = 0, w = 0;
+        for (int j = 0; j < n; j++)
+        {
+            if (s[i][j] == 'W')
+            {
+                cnt++;
+                w++;
+            }
+            else
+            {
+                cnt = 0;
+            }
+            if (s[i][j] == 'B')
+            {
+                b++;
+                cnt2++;
+            }
+            else
+            {
+                cnt2 = 0;
+            }
+            if (cnt == 3 || cnt2 == 3)
+            {
+                cout << 0 << endl;
+                return;
+            }
+        }
+        if (b != w)
+        {
+            cout << 0 << endl;
+            return;
+        }
     }
-    cout << endl;
+    for (int j = 0; j < n; j++)
+    {
+        int cnt = 0;
+        int cnt2 = 0;
+        int b = 0, w = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (s[i][j] == 'W')
+            {
+                w++;
+                cnt++;
+            }
+            else
+            {
+                cnt = 0;
+            }
+            if (s[i][j] == 'B')
+            {
+                b++;
+                cnt2++;
+            }
+            else
+            {
+                cnt2 = 0;
+            }
+            if (cnt == 3 || cnt2 == 3)
+            {
+                cout << 0 << endl;
+                return;
+            }
+        }
+        if (b != w)
+        {
+            cout << 0 << endl;
+            return;
+        }
+    }
+    cout << 1 << endl;
 }
 
 int32_t main()

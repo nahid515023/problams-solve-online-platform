@@ -8,7 +8,6 @@ int s = 1, e = 0;
 
 void dfs(int root, int prv)
 {
-    // cout << prv << " --> " << root << endl;
     st[root] = s++;
     for (int &v : g[root])
     {

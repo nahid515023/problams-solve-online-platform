@@ -6,20 +6,29 @@ void solve()
 {
     int n;
     cin >> n;
-    int s = 0, p = 0;
-    set<int> st;
+
+    vector<int> cnt(n + 1);
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
+        int a;
+        cin >> a;
 
-            if (x >= 0)
-                s += x;
-            else
-                p += x;
-
+        if (a <= n)
+        {
+            cnt[a]++;
+        }
     }
-    cout << s - p << endl;
+
+    for (int i = n; i >= 1; i--)
+    {
+        for (int j = 2 * i; j <= n; j += i)
+        {
+            cnt[j] += cnt[i];
+        }
+    }
+
+    auto ans = *max_element(cnt.begin(), cnt.end());
+    cout << ans << endl;
 }
 
 int32_t main()
@@ -31,7 +40,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();
