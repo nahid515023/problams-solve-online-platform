@@ -4,23 +4,10 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-
-    int rt = pow(2, n + 1) - 1;
-
-    for (int i = 0; i < s.size(); i++)
-    {
-        int x = pow(2, i);
-        if (s[i] == 'R')
-        {
-            x += 1;
-        }
-        rt -= x;
-    }
-    cout << rt << endl;
+    int a, b, c, d, e, f;
+    cin >> a >> b >> c >> d >> e >> f;
+    int ans = (b + c + d) * (b + c + d) - b * b - d * d - f * f;
+    cout << ans << endl;
 }
 
 int32_t main()

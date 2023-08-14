@@ -6,21 +6,11 @@ void solve()
 {
     int n;
     cin >> n;
-    string s;
-    cin >> s;
-
-    int rt = pow(2, n + 1) - 1;
-
-    for (int i = 0; i < s.size(); i++)
+    vector<int> v(n);
+    for (int i = 1; i <= n; i++)
     {
-        int x = pow(2, i);
-        if (s[i] == 'R')
-        {
-            x += 1;
-        }
-        rt -= x;
+        v.push_back(i);
     }
-    cout << rt << endl;
 }
 
 int32_t main()
@@ -32,7 +22,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

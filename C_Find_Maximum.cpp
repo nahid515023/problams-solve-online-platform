@@ -6,21 +6,23 @@ void solve()
 {
     int n;
     cin >> n;
+    int ar[n];
+    for (int i = 0; i < n; i++)
+        cin >> ar[i];
     string s;
     cin >> s;
 
-    int rt = pow(2, n + 1) - 1;
-
-    for (int i = 0; i < s.size(); i++)
+    int ans = 0;
+    int sum = 0;
+    for (int i = 0; i < n; i++)
     {
-        int x = pow(2, i);
-        if (s[i] == 'R')
+        if (s[i] == '1')
         {
-            x += 1;
+            ans = max(ans + ar[i], sum);
         }
-        rt -= x;
+        sum += ar[i];
     }
-    cout << rt << endl;
+    cout << ans << endl;
 }
 
 int32_t main()

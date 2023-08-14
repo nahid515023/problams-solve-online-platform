@@ -4,23 +4,26 @@ using namespace std;
 
 void solve()
 {
+    int x, y;
+    cin >> x >> y;
     int n;
     cin >> n;
-    string s;
-    cin >> s;
-
-    int rt = pow(2, n + 1) - 1;
-
-    for (int i = 0; i < s.size(); i++)
+    int ar[600];
+    ar[0] = x;
+    ar[1] = y;
+    int sum = x + y;
+    for (int i = 2; i < 100; i++)
     {
-        int x = pow(2, i);
-        if (s[i] == 'R')
-        {
-            x += 1;
-        }
-        rt -= x;
+        ar[i] = ar[i - 1] - ar[i - 2];
+        sum += ar[i];
+        // cout << ar[i] << " ";
     }
-    cout << rt << endl;
+    n--;
+    int ans = ar[(n % 6)];
+    ans=ans%1000000007;
+    if(ans<0) ans=1000000007+ans;
+
+    cout << ans << endl;
 }
 
 int32_t main()

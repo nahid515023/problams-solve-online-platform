@@ -4,23 +4,26 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-
-    int rt = pow(2, n + 1) - 1;
-
-    for (int i = 0; i < s.size(); i++)
+    int n, k;
+    cin >> n >> k;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
     {
-        int x = pow(2, i);
-        if (s[i] == 'R')
-        {
-            x += 1;
-        }
-        rt -= x;
+        cin >> v[i];
     }
-    cout << rt << endl;
+
+    int ans = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        int cnt = v[i] + k;
+        int x = upper_bound(v.begin(), v.end(), cnt) - v.begin();
+        x--;
+        x = x - i;
+        if (x > 0)
+            ans += (x * (x - 1)) / 2;
+    }
+    cout << ans << endl;
 }
 
 int32_t main()

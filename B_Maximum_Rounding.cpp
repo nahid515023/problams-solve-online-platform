@@ -4,23 +4,34 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
     string s;
     cin >> s;
-
-    int rt = pow(2, n + 1) - 1;
-
+    for (int i = s.size() - 1; i >= 0; i--)
+    {
+        if (s[i] >= '5' && i - 1 >= 0)
+        {
+            s[i - 1]++;
+        }
+        if (s[i] >= '5' && i == 0)
+        {
+            cout << 1;
+        }
+    }
+    bool ok = 0;
     for (int i = 0; i < s.size(); i++)
     {
-        int x = pow(2, i);
-        if (s[i] == 'R')
+        if (s[i] >= '5')
         {
-            x += 1;
+            ok = 1;
         }
-        rt -= x;
+        if (ok)
+        {
+            cout << 0;
+        }
+        else
+            cout << s[i];
     }
-    cout << rt << endl;
+    cout << endl;
 }
 
 int32_t main()
@@ -32,7 +43,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

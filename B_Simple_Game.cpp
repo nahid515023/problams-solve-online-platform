@@ -4,23 +4,24 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-
-    int rt = pow(2, n + 1) - 1;
-
-    for (int i = 0; i < s.size(); i++)
+    int n, m;
+    cin >> n >> m;
+    int l = m - 1;
+    int r = n - m;
+    // cout << l << " " << r << endl;
+    if (l == 0 && r == 0)
     {
-        int x = pow(2, i);
-        if (s[i] == 'R')
-        {
-            x += 1;
-        }
-        rt -= x;
+        cout << m << endl;
+        return;
     }
-    cout << rt << endl;
+    if (l >= r)
+    {
+        cout << m - 1 << endl;
+    }
+    else 
+    {
+        cout << m + 1 << endl;
+    }
 }
 
 int32_t main()
