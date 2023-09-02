@@ -6,21 +6,29 @@ void solve()
 {
     int n;
     cin >> n;
-    map<string, int> mp;
+    vector<int> v(n);
     for (int i = 0; i < n; i++)
     {
-        string a, b;
-        cin >> a >> b;
-        mp[b]++;
+        cin >> v[i];
     }
-
-    int ans = 1;
-    int prv = -1;
-    for (auto [x, y] : mp)
+    vector<int> a;
+    a.push_back(v[0]);
+    for (int i = 1; i < n; i++)
     {
-        ans *= y+1;
+        if (v[i] < v[i - 1])
+        {
+            a.push_back(v[i]);
+            a.push_back(v[i]);
+        }
+        else
+        {
+            a.push_back(v[i]);
+        }
     }
-    cout << ans-1 << endl;
+    cout << a.size() << endl;
+    for (auto &x : a)
+        cout << x << " ";
+    cout << endl;
 }
 
 int32_t main()

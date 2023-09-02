@@ -1,33 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int mod = 1e9 + 7;
 
 void solve()
 {
     int n;
     cin >> n;
     vector<int> v(n);
-    int bc = 1;
-    bool ok = 0;
     for (int i = 0; i < n; i++)
     {
-        bc = (bc + bc);
-        cin >> v[i];
-        if (bc < v[i])
+        v[i] = i + 1;
+    }
+    do
+    {
+        set<int> st;
+        for (int i = 0; i < n; i++)
         {
-            ok = 1;
+            // cout<<v[i]<<" ";
+            int d = __gcd(v[i], v[(i % (n - 1)) + 1]);
+            st.insert(d);
         }
-        bc -= (v[i]);
-    }
-    if (ok)
-    {
-        cout << "error" << endl;
-    }
-    else
-    {
-        cout << (bc%mod) << endl;
-    }
+        if (st.size() >= 5)
+        {
+            cout << st.size() << endl;
+            for (auto &x : v)
+                cout << x << " ";
+            cout << endl;
+        }
+    } while (next_permutation(v.begin(), v.end()));
 }
 
 int32_t main()

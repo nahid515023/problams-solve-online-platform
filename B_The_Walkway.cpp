@@ -4,17 +4,12 @@ using namespace std;
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    int ans = n;
-    while (n >= m)
-    {
-        ans += (n / m);
-        int r = n % m;
-        n /= m;
-        n += r;
-    }
-    cout << ans << endl;
+    int n, m, d;
+    vector<int> v(m);
+    for (auto &x : v)
+        cin >> x;
+    
+    
 }
 
 int32_t main()
@@ -26,7 +21,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

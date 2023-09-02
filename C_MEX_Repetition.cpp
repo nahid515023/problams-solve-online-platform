@@ -1,33 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int mod = 1e9 + 7;
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int n, k;
+    cin >> n >> k;
     vector<int> v(n);
-    int bc = 1;
-    bool ok = 0;
+    set<int> st;
     for (int i = 0; i < n; i++)
     {
-        bc = (bc + bc);
         cin >> v[i];
-        if (bc < v[i])
+        st.insert(v[i]);
+    }
+    int val = 0;
+    for (int i = 0; i <= n; i++)
+    {
+        if (st.count(i) != 1)
         {
-            ok = 1;
+            val = i;
+            break;
         }
-        bc -= (v[i]);
     }
-    if (ok)
+
+    k = k % (n + 1);
+    v.push_back(val);
+    rotate(v.begin(), v.begin() + n+1-k, v.end());
+
+    for (int i = 0; i <= n; i++)
     {
-        cout << "error" << endl;
+        cout << v[i] << " ";
     }
-    else
-    {
-        cout << (bc%mod) << endl;
-    }
+    cout << endl;
+
+    // cout << k << " " << val << endl;
 }
 
 int32_t main()
@@ -39,7 +45,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

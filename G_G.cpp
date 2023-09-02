@@ -4,30 +4,26 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    set<int> st;
-    for (int i = 0; i < k; i++)
+    int d, m;
+    cin >> d >> m;
+    vector<int> v(m);
+    for (int i = 0; i < m; i++)
     {
-        int x;
-        cin >> x;
-        st.insert(x);
+        cin >> v[i];
     }
     int ans = 0;
-    for (int i = 1; i <= n; i++)
+
+    int x = 0;
+    for (int i = 0; i < m; i++)
     {
-        if (*st.begin() == i && st.size() > 0)
+        if (x == 0 && v[i] >= 13)
         {
-            ans += (n - i)+1;
-            st.erase(st.begin());
+            ans++;
         }
-        else
-        {
-            if (st.size() > 0)
-                ans += (n - *st.begin())+1;
-        }
+        x += v[i];
+        x = x % 7;
     }
-    cout<<ans<<endl;
+    cout << ans << endl;
 }
 
 int32_t main()
@@ -39,7 +35,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

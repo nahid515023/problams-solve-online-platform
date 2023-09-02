@@ -2,25 +2,42 @@
 using namespace std;
 #define int long long
 
+multiset<pair<int, int>> v;
+
+int f(int x)
+{
+    auto it = v.find(x);
+    if (it != v.end())
+    {
+        for (;it<v.end() && ;it++)
+        {
+            if()
+        }
+    }
+}
+
 void solve()
 {
     int n;
     cin >> n;
-    string s;
-    cin >> s;
 
-    int rt = pow(2, n + 1) - 1;
-
-    for (int i = 0; i < s.size(); i++)
+    for (int i = 0; i < n; i++)
     {
-        int x = pow(2, i);
-        if (s[i] == 'R')
-        {
-            x += 1;
-        }
-        rt -= x;
+        int x;
+        cin >> x;
+        v.insert({x, i});
     }
-    cout << rt << endl;
+
+    for (auto [x, y] : v)
+    {
+        cout << x << " " << y << endl;
+    }
+
+    while (!v.empty())
+    {
+        int[x, y] = v.begin();
+        v.erase(v.begin());
+    }
 }
 
 int32_t main()

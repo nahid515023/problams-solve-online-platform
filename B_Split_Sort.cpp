@@ -4,17 +4,22 @@ using namespace std;
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    int ans = n;
-    while (n >= m)
+    int n;
+    cin >> n;
+    vector<int> v(n + 1);
+    for (int i = 1; i <= n; i++)
     {
-        ans += (n / m);
-        int r = n % m;
-        n /= m;
-        n += r;
+        int x;
+        cin >> x;
+        v[x] = i;
     }
-    cout << ans << endl;
+    int cnt = 0;
+    for (int i = 2; i <= n; i++)
+    {
+        if (v[i] < v[i - 1])
+            cnt++;
+    }
+    cout << cnt << endl;
 }
 
 int32_t main()
@@ -26,7 +31,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

@@ -6,21 +6,19 @@ void solve()
 {
     int n;
     cin >> n;
-    map<string, int> mp;
-    for (int i = 0; i < n; i++)
+    vector<int> p(n);
+    for (int i = 0; i < n; ++i)
+        cin >> p[i];
+    for (int i = 0; i < n;)
     {
-        string a, b;
-        cin >> a >> b;
-        mp[b]++;
+        int j = min_element(p.begin() + i, p.end()) - p.begin();
+        for (int k = j - 1; k >= i; --k)
+            swap(p[k], p[k + 1]);
+        i = max(j, i + 1);
     }
-
-    int ans = 1;
-    int prv = -1;
-    for (auto [x, y] : mp)
-    {
-        ans *= y+1;
-    }
-    cout << ans-1 << endl;
+    for (int i = 0; i < n; ++i)
+        cout << p[i] << " ";
+    cout << endl;
 }
 
 int32_t main()

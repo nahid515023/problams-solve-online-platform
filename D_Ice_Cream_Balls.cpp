@@ -6,21 +6,30 @@ void solve()
 {
     int n;
     cin >> n;
-    map<string, int> mp;
-    for (int i = 0; i < n; i++)
-    {
-        string a, b;
-        cin >> a >> b;
-        mp[b]++;
-    }
-
+    int l = 0, h = 10000000000;
     int ans = 1;
-    int prv = -1;
-    for (auto [x, y] : mp)
+    while (l <= h)
     {
-        ans *= y+1;
+        int m = (l + h) / 2;
+        int v = (m * (m - 1))/ 2;
+        if (v == n)
+        {
+            cout << m << endl;
+            return;
+        }
+        if (v < n)
+        {
+            ans = m;
+            l = m + 1;
+        }
+        else
+        {
+            h = m - 1;
+        }
     }
-    cout << ans-1 << endl;
+    int x = ans * (ans - 1) / 2;
+    ans +=(n-x);
+    cout << ans << endl;
 }
 
 int32_t main()

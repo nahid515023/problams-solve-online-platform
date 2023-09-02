@@ -1,41 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-
-void solve()
-{
-    int n;
-    cin >> n;
-    vector<int> v(n);
-    map<int, int> mp;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> v[i];
-        mp[v[i]]++;
-    }
-
-    for (auto [x, y] : mp)
-    {
-        if (mp.size() < y)
-        {
-            cout << "boring" << endl;
-            return;
-        }
-    }
-    cout << "non-boring" << endl;
-}
+vector<string> v;
 
 int32_t main()
 {
-    // #ifndef ONLINE_JUDGE
-    //     freopen("input.txt", "r", stdin);
-    //     freopen("output.txt", "w", stdout);
-    // #endif
-    int t = 1;
-    cin >> t;
-    while (t--)
+    string s;
+    int mx = 0;
+    while (getline(cin, s))
     {
-        solve();
+        if (s == "")
+        {
+            sort(v.begin(), v.end());
+            for (auto x : v)
+            {
+                for (int i = 0; i < (mx - x.size()); i++)
+                    cout << " ";
+                reverse(x.begin(), x.end());
+                cout << x << endl;
+            }
+            v.clear();
+            mx = 0;
+            cout << endl;
+        }
+        else
+        {
+            mx = max((int)s.size(), mx);
+            reverse(s.begin(), s.end());
+            v.push_back(s);
+        }
+    }
+    sort(v.begin(), v.end());
+    for (auto x : v)
+    {
+        for (int i = 0; i < (mx - x.size()); i++)
+            cout << " ";
+        reverse(x.begin(), x.end());
+        cout << x << endl;
     }
     return 0;
 }
