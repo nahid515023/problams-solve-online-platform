@@ -4,39 +4,34 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-
-    vector<int> v;
-    int x = 1;
+    int n, m;
+    cin >> n >> m;
+    vector<int> v(n + 1, 0);
+    set<int> s;
     for (int i = 1; i <= n; i++)
     {
-        if (i <= k / 2)
+        s.insert(i);
+    }
+    while (m--)
+    {
+        int l, r, x;
+        cin >> l >> r >> x;
+        auto it = s.lower_bound(l);
+        while (*it <= r && it != s.end())
         {
-            v.push_back(i);
-            v.push_back(n);
-            n--;
-            x = i + 1;
+            if (*it == x)
+            {
+                it++;
+                continue;
+            }
+            int val = *it;
+            it++;
+            s.erase(val);
+            v[val] = x;
         }
     }
-    if (k & 1)
-    {
-        for (int i = x; i <= n; i++)
-        {
-            v.push_back(i);
-        }
-    }
-    else
-    {
-        for (int i = v.back() - 1; i >= x; i--)
-        {
-            v.push_back(i);
-        }
-    }
-    for (int i = 0; i < v.size(); i++)
-    {
+    for (int i = 1; i <= n; i++)
         cout << v[i] << " ";
-    }
     cout << endl;
 }
 

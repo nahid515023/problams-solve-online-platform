@@ -4,25 +4,24 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<pair<int, int>> v;
-    multiset<pair<int, int>> ms;
-    for (int i = 0; i < k; i++)
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    if (n == 1)
     {
-        int a, b;
-        cin >> a >> b;
-        v.push_back({a, b});
-        ms.insert({b - a + 1, i});
+        cout << s << endl;
+        return;
     }
-    int x = ms.begin()->first;
-    cout << x << endl;
-
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < s.size() - 1; i++)
     {
-        cout << i % x << " ";
+        if (s[i] == '0')
+        {
+            cout << string(n, '0') << endl;
+            return;
+        }
     }
-    cout << endl;
+    cout << string(n, '1') << endl;
 }
 
 int32_t main()
@@ -34,7 +33,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

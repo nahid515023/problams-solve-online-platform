@@ -4,25 +4,28 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<pair<int, int>> v;
-    multiset<pair<int, int>> ms;
-    for (int i = 0; i < k; i++)
-    {
-        int a, b;
-        cin >> a >> b;
-        v.push_back({a, b});
-        ms.insert({b - a + 1, i});
-    }
-    int x = ms.begin()->first;
-    cout << x << endl;
-
+    int n;
+    cin >> n;
+    int ar[n];
     for (int i = 0; i < n; i++)
     {
-        cout << i % x << " ";
+        cin >> ar[i];
     }
-    cout << endl;
+    int ans = 1;
+    int cnt = 1;
+    for (int i = 1; i < n; i++)
+    {
+        if (ar[i] == ar[i - 1])
+        {
+            cnt++;
+        }
+        else
+        {
+            cnt = 1;
+        }
+        ans += cnt;
+    }
+    cout << ans << endl;
 }
 
 int32_t main()

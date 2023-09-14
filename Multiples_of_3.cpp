@@ -1,106 +1,136 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+const int N = 1e5 + 7;
+int tree[N * 4][3], lazy[N * 4];
 
-const int MAX = 100001;
-int tree[4 * MAX];
-int lazy[4 * MAX];
 
-void build(int a[], int node, int tl, int tr)
+
+void propagate(int node, int tr, int tl)
+{
+    if (tl != tr)
+    {
+        lazy[node * 2] = (lazy[node] + lazy[node * 2]) % 3;
+        lazy[node * 2 + 1] = (lazy[node] + lazy[node * 2 + 1]) % 3;
+    }
+    if (lazy[node] == 1)
+    {
+        swap(tree[node][0], tree[node][2]);
+        swap(tree[node][1], tree[node][2]);
+    }
+    if (lazy[node] == 2)
+    {
+        swap(tree[node][0], tree[node][1]);
+        swap(tree[node][1], tree[node][2]);
+    }
+    lazy[node] = 0;
+}
+
+void buildTree(int node, int tl, int tr)
 {
     if (tl == tr)
     {
-        tree[node] = a[tl];
+        tree[node][0] = 1;
+        tree[node][1] = tree[node][2] = 0;
         return;
     }
-    int mid = tl + (tr - tl) / 2;
-    int left = node * 2;
-    int right = node * 2 + 1;
-    build(a, left, tl, mid);
-    build(a, right, mid + 1, tr);
-    tree[node] = tree[left] + tree[right];
-}
-
-void propagate(int node, int tl, int tr)
-{
-    if (lazy[node] != 0)
-    {
-        tree[node] += lazy[node] * (tr - tl + 1);
-        if (tl != tr)
-        {
-            lazy[node * 2] += lazy[node];
-            lazy[node * 2] %= 3;
-            lazy[node * 2 + 1] += lazy[node];
-            lazy[node * 2 + 1] %= 3;
-        }
-        lazy[node] = 0;
-    }
+    int mid = (tl + tr) / 2;
+    buildTree(node * 2, tl, mid);
+    buildTree(node * 2 + 1, mid + 1, tr);
+    tree[node][1] = tree[node][2] = 0;
+    tree[node][0] = tree[node * 2][0] + tree[node * 2 + 1][0];
 }
 
 int query(int node, int tl, int tr, int b, int e)
 {
-    if (tl > e || tr < b)
+
+    if (lazy[node] > 0)
+    {
+        propagate(node, tr, tl);
+    }
+    if (tl > e || tr < b || e < b)
         return 0;
-
-    propagate(node, tl, tr);
-
     if (tl >= b && tr <= e)
     {
-        return tree[node];
+        return tree[node][0];
     }
 
-    int mid = tl + (tr - tl) / 2;
-    return query(node * 2, tl, mid, b, e) + query(node * 2 + 1, mid + 1, tr, b, e);
+    int mid = (tl + tr) / 2;
+    int aa = query(node * 2, tl, mid, b, e);
+    int bb = query(node * 2 + 1, mid + 1, tr, b, e);
+    return (aa + bb);
 }
 
-void update(int node, int tl, int tr, int b, int e, int val)
+void updateRange(int node, int tl, int tr, int b, int e)
 {
-    propagate(node, tl, tr);
+    if (lazy[node] > 0)
+    {
+        propagate(node, tr, tl);
+    }
 
-    if (tl > e || tr < b)
+    if (tr < tl || tr < b || tl > e)
         return;
 
     if (tl >= b && tr <= e)
     {
-        tree[node] += val * (tr - tl + 1);
         if (tl != tr)
         {
-            lazy[node * 2] += val;
-            lazy[node * 2 + 1] += val;
+            lazy[node * 2] = (lazy[node * 2] + 1) % 3;
+            lazy[node * 2 + 1] = (lazy[node * 2 + 1] + 1) % 3;
         }
+        swap(tree[node][0], tree[node][2]);
+        swap(tree[node][1], tree[node][2]);
+    
+
         return;
     }
 
-    int mid = tl + (tr - tl) / 2;
-    update(node * 2, tl, mid, b, e, val);
-    update(node * 2 + 1, mid + 1, tr, b, e, val);
-    tree[node] = tree[node * 2] + tree[node * 2 + 1];
+    int mid = (tl + tr) / 2;
+    updateRange(node * 2, tl, mid, b, e);
+    updateRange(node * 2 + 1, mid + 1, tr, b, e);
+    tree[node][0] = (tree[node * 2][0] + tree[node * 2 + 1][0]);
+    tree[node][1] = (tree[node * 2][1] + tree[node * 2 + 1][1]);
+    tree[node][2] = (tree[node * 2][2] + tree[node * 2 + 1][2]);
+}
+
+void solve()
+{
+    int n, q;
+    cin >> n >> q;
+    buildTree(1, 1, n);
+    while (q--)
+    {
+        int x;
+        cin >> x;
+        if (x == 0)
+        {
+            int a, b;
+            cin >> a >> b;
+            a++;
+            b++;
+            updateRange(1, 1, n, a, b);
+        }
+        else
+        {
+            int a, b;
+            cin >> a >> b;
+            a++;
+            b++;
+            cout << query(1, 1, n, a, b) << endl;
+        }
+    }
 }
 
 int32_t main()
 {
-    int n, q;
-    cin >> n >> q;
-    int a[n];
-    for (int i = 0; i < n; i++)
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t = 1;
+    // cin >> t;
+    // freopen("input.txt", "r", stdin);
+    while (t--)
     {
-        a[i] = 0;
+        solve();
     }
-    build(a, 1, 0, n - 1);
-
-    while (q--)
-    {
-        int x, i, j;
-        cin >> x >> i >> j;
-        if (x == 0)
-        {
-            update(1, 0, n - 1, i, j, 1);
-        }
-        else
-        {
-            cout << query(1, 0, n - 1, i, j) << endl;
-        }
-    }
-
     return 0;
 }

@@ -6,42 +6,49 @@ void solve()
 {
     string s;
     cin >> s;
-    int p = 0;
-    int pos = -1;
-    char ck = ' ';
-    for (int i = 0; i < s.size(); i++)
+    stack<char> st;
+    st.push(1);
+    int neg = 0, pos = 1;
+    for (char ch : s)
     {
-        if (s[i] == '+')
+        if (ch == '+')
         {
-            p++;
-            if (pos > 0)
+            if (st.top() == '-')
+            {
+                st.pop();
+                neg--;
+            }
+            else
+            {
+                st.push(ch);
                 pos++;
+            }
         }
-        else if (s[i] == '-')
+        else if (ch == '-')
         {
-            p--;
-            if (pos > 0)
+            if (st.top() == '-')
+            {
+                st.push(ch);
+                neg++;
+            }
+            else
+            {
+                st.pop();
                 pos--;
+            }
         }
         else
         {
-            if (p <= 1 && s[i] == '0')
+            if (ch == '1' && neg > 0)
             {
                 cout << "NO" << endl;
                 return;
             }
-
-            if (pos > 0)
+            else if (ch == '0' && neg == 0 && pos > neg)
             {
-                if (ck != s[i])
-                {
-                    cout << "NO" << endl;
-                    return;
-                }
+                cout << "NO" << endl;
+                return;
             }
-            if (ck != s[i])
-                pos = 1;
-            ck = s[i];
         }
     }
     cout << "YES" << endl;
@@ -52,7 +59,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     // #ifndef ONLINE_JUDGE
-    // freopen("input.txt", "r", stdin);
+    freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;

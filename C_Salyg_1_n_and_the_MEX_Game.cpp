@@ -4,19 +4,36 @@ using namespace std;
 
 void solve()
 {
-    int n, a, b;
-    cin >> n >> a >> b;
-    int s = 0;
+    int n;
+    cin >> n;
+    set<int> st;
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        if (i >= a && i <= b)
+        int a;
+        cin >> a;
+        st.insert(a);
+    }
+
+    int c = 1;
+    int mex = 1;
+    for (auto &x : st)
+    {
+        if (x != c)
         {
-            s += x;
+            mex = c;
+            break;
         }
     }
-    cout << s << endl;
+
+    int a;
+    int xx = 2 * n + 1;
+    while (cin >> a && xx > 0)
+    {
+        xx--;
+        if (a == -1)
+            break;
+        if(a)
+    }
 }
 
 int32_t main()
@@ -28,7 +45,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

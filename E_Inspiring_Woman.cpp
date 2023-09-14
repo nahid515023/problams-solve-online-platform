@@ -4,19 +4,12 @@ using namespace std;
 
 void solve()
 {
-    int n, a, b;
-    cin >> n >> a >> b;
-    int s = 0;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        if (i >= a && i <= b)
-        {
-            s += x;
-        }
-    }
-    cout << s << endl;
+    int t, n;
+    cin >> t >> n;
+    int even = t / 2;
+    int odd = ((t + 1) / 2);
+    int ans = min(n, odd) * 2 + n - min(n, odd);
+    cout << ans;
 }
 
 int32_t main()

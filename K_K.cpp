@@ -4,19 +4,11 @@ using namespace std;
 
 void solve()
 {
-    int n, a, b;
-    cin >> n >> a >> b;
-    int s = 0;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        if (i >= a && i <= b)
-        {
-            s += x;
-        }
-    }
-    cout << s << endl;
+    int n, m, k, x, y;
+    cin >> n >> m >> k >> x >> y;
+
+    int 
+    
 }
 
 int32_t main()

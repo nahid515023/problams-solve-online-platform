@@ -4,19 +4,15 @@ using namespace std;
 
 void solve()
 {
-    int n, a, b;
-    cin >> n >> a >> b;
-    int s = 0;
-    for (int i = 0; i < n; i++)
+    int x, y, k;
+    cin >> x >> y >> k;
+    int d = abs(x - y);
+    int ans = d / (2 * k);
+    if (d % (k * 2) != 0)
     {
-        int x;
-        cin >> x;
-        if (i >= a && i <= b)
-        {
-            s += x;
-        }
+        ans++;
     }
-    cout << s << endl;
+    cout << ans << endl;
 }
 
 int32_t main()
@@ -28,7 +24,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

@@ -2,93 +2,67 @@
 using namespace std;
 #define int long long
 
-int32_t main()
+void solve()
 {
     string s;
-    int n;
-    while (cin >> s >> n)
+    cin >> s;
+    int x, y;
+    cin >> x >> y;
+    int n = s.size();
+    int a[n], b[n];
+    int v = 0, u = 0, aa = 1;
+    for (int i = 0; i < n; i++)
     {
-        int l = s.size();
+        v = (v * 10 + s[i] - '0') % x;
+        a[i] = v;
+        u = (u + (s[n - i - 1] - '0') * aa) % y;
+        aa = (10 * aa) % y;
+        b[n - i - 1] = u;
+    }
 
-        for (int i = l - 1; i >= 0; i--)
+    int inx = -1;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (a[i - 1] == b[i] && a[i - 1] == 0 && s[i] != '0')
         {
-            if (s[i] >= '0' && s[i] <= '9')
-            {
-                int x = n % 10;
-                n /= 10;
-                int v = (s[i] - '0') + x;
-                n += (v / 10);
-                v = v % 10;
-                s[i] = ('0' + v);
-            }
-            else if (s[i] >= 'a' && s[i] <= 'z')
-            {
-                int x = n % 26;
-                n /= 26;
-                int v = (s[i] - 'a') + x;
-                n += (v / 26);
-                v = (v % 26);
-                s[i] = ('a' + v);
-            }
-            else
-            {
-                int x = n % 26;
-                n /= 26;
-                int v = (s[i] - 'A') + x;
-                n += (v / 26);
-                v = (v % 26);
-                s[i] = ('A' + v);
-            }
-            if (i == 0 && n > 0)
-            {
-                string rr;
-
-                if (s[0] >= 'A' && s[0] <= 'Z')
-                {
-                    while (n > 0)
-                    {
-                        if (n > 26)
-                            rr.push_back('A'+(n%26));
-                        else
-                        {
-                            rr.push_back(('A' + n - 1));
-                        }
-                        n /= 26;
-                    }
-                }
-                else if (s[i] >= 'a' && s[i] <= 'z')
-                {
-                    while (n > 0)
-                    {
-                        if (n > 26)
-                            rr.push_back('a'+(n%26));
-                        else
-                        {
-                            rr.push_back(('a' + n - 1));
-                        }
-                        n /= 26;
-                    }
-                }
-                else
-                {
-                    while (n > 0)
-                    {
-                        if (n <= 9)
-                        {
-                            rr.push_back(char('0' + n));
-                        }
-                        else
-                        {
-                            rr.push_back('0'+(n%10));
-                        }
-                        n /= 10;
-                    }
-                }
-                reverse(rr.begin(), rr.end());
-                cout << rr;
-            }
+            inx = i;
+            break;
         }
-        cout << s << endl;
+    }
+    if (inx == -1)
+    {
+        cout << "NO" << endl;
+        return;
+    }
+
+    string l = s.substr(0, inx);
+    string r = s.substr(inx, n);
+    set<char> st(l.begin(), l.end());
+    set<char> st2(r.begin(), r.end());
+    if (st.size() == 1 && *st.begin() == '0' || st2.size() == 1 && *st2.begin() == '0')
+    {
+        cout << "NO" << endl;
+        return;
+    }
+    cout << "YES" << endl;
+    cout << l << endl
+         << r << endl;
+}
+
+int32_t main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // #ifndef ONLINE_JUDGE
+    // freopen("input.txt", "r", stdin);
+    // freopen("output.txt", "w", stdout);
+    // #endif
+    int t = 1;
+    // cin >> t;
+    while (t--)
+    {
+        solve();
     }
     return 0;
 }

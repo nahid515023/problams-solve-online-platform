@@ -4,19 +4,26 @@ using namespace std;
 
 void solve()
 {
-    int n, a, b;
-    cin >> n >> a >> b;
-    int s = 0;
-    for (int i = 0; i < n; i++)
+    int n;
+    cin >> n;
+    n--;
+    int r = (n % 4);
+    if (r == 0)
     {
-        int x;
-        cin >> x;
-        if (i >= a && i <= b)
-        {
-            s += x;
-        }
+        cout << "Alu bhorta";
     }
-    cout << s << endl;
+    else if (r == 1)
+    {
+        cout << "Begun bhorta";
+    }
+    else if (r == 2)
+    {
+        cout << "Sim bhorta";
+    }
+    else
+    {
+        cout << "Dim vaji";
+    }
 }
 
 int32_t main()

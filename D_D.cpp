@@ -2,41 +2,36 @@
 using namespace std;
 #define int long long
 
-multiset<pair<int, int>> v;
-
-int f(int x)
-{
-    auto it = v.find(x);
-    if (it != v.end())
-    {
-        for (;it<v.end() && ;it++)
-        {
-            if()
-        }
-    }
-}
-
 void solve()
 {
+    int a, b;
+    cin >> a >> b;
+    int x = __gcd(a, b);
+    set<int> st;
+    for (int i = 1; i * i <= x; i++)
+    {
+        if (x % i == 0)
+        {
+            st.insert(i);
+            st.insert(x / i);
+        }
+    }
+
     int n;
     cin >> n;
-
-    for (int i = 0; i < n; i++)
+    while (n--)
     {
-        int x;
-        cin >> x;
-        v.insert({x, i});
-    }
-
-    for (auto [x, y] : v)
-    {
-        cout << x << " " << y << endl;
-    }
-
-    while (!v.empty())
-    {
-        int[x, y] = v.begin();
-        v.erase(v.begin());
+        int l, h;
+        cin >> l >> h;
+        int val = *--st.upper_bound(h);
+        if (val >= l)
+        {
+            cout << val << endl;
+        }
+        else
+        {
+            cout << -1 << endl;
+        }
     }
 }
 
@@ -50,6 +45,7 @@ int32_t main()
     // #endif
     int t = 1;
     // cin >> t;
+
     while (t--)
     {
         solve();
