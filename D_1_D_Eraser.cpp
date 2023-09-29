@@ -4,37 +4,21 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<int> v;
-    for (int i = 0; i < n; i++)
-    {
-        int a;
-        cin >> a;
-        v.push_back(a);
-    }
-    sort(v.begin(), v.end());
+    int n, k;
+    cin >> n >> k;
+    string s;
+    cin >> s;
 
-    int mex = n;
+    int cnt = 0;
     for (int i = 0; i < n; i++)
     {
-        if (i != v[i])
+        if (s[i] == 'B')
         {
-            mex = i;
-            break;
+            i += k - 1;
+            cnt++;
         }
     }
-
-    int a = mex;
-    cout << a << endl;
-    while (1)
-    {
-        cout << endl;
-        cin >> a;
-        if (a == -1)
-            break;
-        cout << a << endl;
-    }
+    cout << cnt << endl;
 }
 
 int32_t main()

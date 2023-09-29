@@ -6,35 +6,22 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<int> v;
-    for (int i = 0; i < n; i++)
+    int a, b;
+    cin >> a >> b;
+    bool ans = 1;
+    for (int i = 1; i < n; i++)
     {
-        int a;
-        cin >> a;
-        v.push_back(a);
-    }
-    sort(v.begin(), v.end());
-
-    int mex = n;
-    for (int i = 0; i < n; i++)
-    {
-        if (i != v[i])
+        int x, y;
+        cin >> x >> y;
+        if (x >= a && y >= b)
         {
-            mex = i;
-            break;
+            ans = 0;
         }
     }
-
-    int a = mex;
-    cout << a << endl;
-    while (1)
-    {
-        cout << endl;
-        cin >> a;
-        if (a == -1)
-            break;
+    if (ans)
         cout << a << endl;
-    }
+    else
+        cout << -1 << endl;
 }
 
 int32_t main()

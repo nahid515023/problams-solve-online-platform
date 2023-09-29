@@ -80,7 +80,6 @@ void updateRange(int node, int tl, int tr, int b, int e)
         }
         swap(tree[node][0], tree[node][2]);
         swap(tree[node][1], tree[node][2]);
-    
 
         return;
     }

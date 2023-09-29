@@ -4,36 +4,24 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<int> v;
+    int n, m, q;
+    cin >> n >> m >> q;
+    vector<pair<int, int>> v;
+    int mx[m + 5];
     for (int i = 0; i < n; i++)
+    {
+        int a, b;
+        cin >> a >> b;
+        v.push_back({a, b});
+        mx[b] = max(mx[b], a);
+    }
+    sort(v.begin(), v.end());
+    int dis[m + 5];
+    for (int i = 1; i <= m; i++)
     {
         int a;
         cin >> a;
-        v.push_back(a);
-    }
-    sort(v.begin(), v.end());
-
-    int mex = n;
-    for (int i = 0; i < n; i++)
-    {
-        if (i != v[i])
-        {
-            mex = i;
-            break;
-        }
-    }
-
-    int a = mex;
-    cout << a << endl;
-    while (1)
-    {
-        cout << endl;
-        cin >> a;
-        if (a == -1)
-            break;
-        cout << a << endl;
+        dis[i] = a;
     }
 }
 
@@ -46,7 +34,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

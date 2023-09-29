@@ -4,36 +4,23 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<int> v;
+    int n, k;
+    cin >> n >> k;
+    bool ok = 0;
     for (int i = 0; i < n; i++)
     {
         int a;
         cin >> a;
-        v.push_back(a);
-    }
-    sort(v.begin(), v.end());
-
-    int mex = n;
-    for (int i = 0; i < n; i++)
-    {
-        if (i != v[i])
+        if (a == k)
         {
-            mex = i;
-            break;
+            ok = 1;
         }
     }
-
-    int a = mex;
-    cout << a << endl;
-    while (1)
+    if (ok)
+        cout << "YES" << endl;
+    else
     {
-        cout << endl;
-        cin >> a;
-        if (a == -1)
-            break;
-        cout << a << endl;
+        cout << "NO" << endl;
     }
 }
 

@@ -1,33 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-int n;
-int ar[100007];
-int dp[100007];
-int fun(int i)
+vector<pair<int, int>> v;
+int n, w;
+
+int dp[101][100007];
+
+int fun(int i, int sum)
 {
-    if (dp[i] != -1)
-        return dp[i];
+    if (i == n)
+        return 0;
+    if (dp[i][sum] != -1)
+        return dp[i][sum];
     int ans = 0;
-    
-    if (i + 1 < n)
-        ans = fun(i + 1) + abs(ar[i] - ar[i + 1]);
-    if (i + 2 < n)
-        ans = min(ans, fun(i + 2) + abs(ar[i] - ar[i + 2]));
-    return dp[i] = ans;
+    if (sum + v[i].first <= w)
+        ans = fun(i + 1, sum + v[i].first) + v[i].second;
+    ans = max(ans, fun(i + 1, sum));
+    return dp[i][sum] = ans;
 }
 
 void solve()
 {
     memset(dp, -1, sizeof(dp));
-    cin >> n;
-
+    cin >> n >> w;
     for (int i = 0; i < n; i++)
     {
-        cin >> ar[i];
+        int x, y;
+        cin >> x >> y;
+        v.push_back({x, y});
     }
-    int x = fun(0);
-    cout << x << endl;
+    int ans = fun(0, 0);
+    cout << ans << endl;
 }
 
 int32_t main()

@@ -6,35 +6,20 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<int> v;
+    int ar[n];
+    int mx = 1200;
     for (int i = 0; i < n; i++)
     {
-        int a;
-        cin >> a;
-        v.push_back(a);
+        cin >> ar[i];
     }
-    sort(v.begin(), v.end());
-
-    int mex = n;
+    sort(ar, ar + n);
+    ar[0]++;
+    int ans = 1;
     for (int i = 0; i < n; i++)
     {
-        if (i != v[i])
-        {
-            mex = i;
-            break;
-        }
+        ans *= ar[i];
     }
-
-    int a = mex;
-    cout << a << endl;
-    while (1)
-    {
-        cout << endl;
-        cin >> a;
-        if (a == -1)
-            break;
-        cout << a << endl;
-    }
+    cout << ans << endl;
 }
 
 int32_t main()

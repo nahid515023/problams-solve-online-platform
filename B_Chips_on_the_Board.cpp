@@ -6,35 +6,26 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<int> v;
+    int a[n], b[n];
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    for (int i = 0; i < n; i++)
+        cin >> b[i];
+
+    int x = *min_element(a, a + n);
+    int y = *min_element(b, b + n);
+    int ans = 0;
+
     for (int i = 0; i < n; i++)
     {
-        int a;
-        cin >> a;
-        v.push_back(a);
+        ans += (a[i] + y);
     }
-    sort(v.begin(), v.end());
-
-    int mex = n;
+    int ans2 = 0;
     for (int i = 0; i < n; i++)
     {
-        if (i != v[i])
-        {
-            mex = i;
-            break;
-        }
+        ans2 += (b[i] + x);
     }
-
-    int a = mex;
-    cout << a << endl;
-    while (1)
-    {
-        cout << endl;
-        cin >> a;
-        if (a == -1)
-            break;
-        cout << a << endl;
-    }
+    cout << min(ans, ans2) << endl;
 }
 
 int32_t main()

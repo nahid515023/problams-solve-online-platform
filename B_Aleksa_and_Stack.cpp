@@ -6,35 +6,29 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<int> v;
-    for (int i = 0; i < n; i++)
-    {
-        int a;
-        cin >> a;
-        v.push_back(a);
-    }
-    sort(v.begin(), v.end());
+    int ar[n + 5];
+    ar[0] = 2;
+    ar[1] = 3;
+    int x = 4;
 
-    int mex = n;
-    for (int i = 0; i < n; i++)
+    for (int i = 2; i < n; i++)
     {
-        if (i != v[i])
+        if ((x * 3) % (ar[i - 2] + ar[i - 1]) == 0)
         {
-            mex = i;
-            break;
+            ar[i] = x + 1;
+            x++;
         }
+        else
+        {
+            ar[i] = x;
+        }
+        x++;
     }
-
-    int a = mex;
-    cout << a << endl;
-    while (1)
+    for (int i = 0; i < n; i++)
     {
-        cout << endl;
-        cin >> a;
-        if (a == -1)
-            break;
-        cout << a << endl;
+        cout << ar[i] << " ";
     }
+    cout << endl;
 }
 
 int32_t main()

@@ -6,35 +6,27 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<int> v;
+    vector<int> v(n);
     for (int i = 0; i < n; i++)
+        v[i] = i+3;
+    do
     {
-        int a;
-        cin >> a;
-        v.push_back(a);
-    }
-    sort(v.begin(), v.end());
-
-    int mex = n;
-    for (int i = 0; i < n; i++)
-    {
-        if (i != v[i])
+        int a = 0, b = 0;
+        for (int i = 0; i < n; i += 2)
         {
-            mex = i;
-            break;
+            a ^= v[i];
         }
-    }
-
-    int a = mex;
-    cout << a << endl;
-    while (1)
-    {
-        cout << endl;
-        cin >> a;
-        if (a == -1)
-            break;
-        cout << a << endl;
-    }
+        for (int i = 1; i < n; i += 2)
+        {
+            a ^= v[i];
+        }
+        if (a == b)
+        {
+            for (auto &x : v)
+                cout << x << " ";
+            cout << endl;
+        }
+    } while (next_permutation(v.begin(), v.end()));
 }
 
 int32_t main()

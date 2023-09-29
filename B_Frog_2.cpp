@@ -1,26 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-int n;
+int n,k;
 int ar[100007];
 int dp[100007];
 int fun(int i)
 {
+    int ans = INT_MAX;
+
+
+    if (i == n - 1)
+        return 0;
+
     if (dp[i] != -1)
         return dp[i];
-    int ans = 0;
-    
-    if (i + 1 < n)
-        ans = fun(i + 1) + abs(ar[i] - ar[i + 1]);
-    if (i + 2 < n)
-        ans = min(ans, fun(i + 2) + abs(ar[i] - ar[i + 2]));
+        
+    for (int j = 1; j <= k; j++)
+    {
+        if (i + j < n)
+            ans = min(ans, fun(i + j) + abs(ar[i] - ar[i + j]));
+    }
     return dp[i] = ans;
 }
 
 void solve()
 {
     memset(dp, -1, sizeof(dp));
-    cin >> n;
+    cin >> n >> k;
 
     for (int i = 0; i < n; i++)
     {
@@ -32,14 +38,7 @@ void solve()
 
 int32_t main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    // #ifndef ONLINE_JUDGE
-    // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
-    // #endif
     int t = 1;
-    // cin >> t;
     while (t--)
     {
         solve();
