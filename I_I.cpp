@@ -6,21 +6,45 @@ void solve()
 {
     int n;
     cin >> n;
-    map<string, int> mp;
-    for (int i = 0; i < n; i++)
+    string s[n+5];
+    for(int i=0;i<n;i++)
+    cin>>s[i];
+
+    if(n&1)
     {
-        string a, b;
-        cin >> a >> b;
-        mp[b]++;
+        cout<<"No"<<endl;
+        return;
     }
 
-    int ans = 1;
-    int prv = -1;
-    for (auto [x, y] : mp)
+    for(int i=0;i<n;i++)
     {
-        ans *= y+1;
+        if(s[i][0]==')' || s[i][n-1]=='(')
+        {
+            cout<<"No"<<endl;
+            return;
+        }
     }
-    cout << ans-1 << endl;
+
+    for(int i=1;i<n-1;i++)
+    {
+        int cnt=0;
+        for(int j=0;j<n;j++)
+        {
+            if(s[j][i]=='(')
+            {
+                cnt++;
+            }
+            else{
+                cnt--;
+            }
+        }
+        if(cnt!=0) {
+            cout<<"No"<<endl;
+        return ;
+        }
+    }
+    cout<<"Yes"<<endl;
+   
 }
 
 int32_t main()
@@ -32,7 +56,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

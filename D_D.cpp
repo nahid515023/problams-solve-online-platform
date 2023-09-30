@@ -2,53 +2,50 @@
 using namespace std;
 #define int long long
 
-void solve()
+int32_t main()
 {
-    int a, b;
-    cin >> a >> b;
-    int x = __gcd(a, b);
-    set<int> st;
-    for (int i = 1; i * i <= x; i++)
+    while (1)
     {
-        if (x % i == 0)
-        {
-            st.insert(i);
-            st.insert(x / i);
-        }
-    }
+        int n,m;
+        cin>>n>>m;
+        if(n==0 && m==0) break;
 
-    int n;
-    cin >> n;
-    while (n--)
-    {
-        int l, h;
-        cin >> l >> h;
-        int val = *--st.upper_bound(h);
-        if (val >= l)
+        vector<int>h(n);
+        for(int i=0;i<n;i++)
         {
-            cout << val << endl;
+            cin>>h[i];
+        }
+        multiset<int>kn;
+        for(int i=0;i<m;i++)
+        {
+            int a;
+            cin>>a;
+            kn.insert(a);
+        }
+        bool ok=1;
+        int ans=0;
+
+
+        if(n>m) {
+             cout<<"Loowater is doomed!"<<endl;
+             ok=0;
         }
         else
         {
-            cout << -1 << endl;
+            for(int i=0;i<n;i++)
+        {
+            if(kn.lower_bound(h[i])==kn.end())
+            {
+                cout<<"Loowater is doomed!"<<endl;
+                ok=0;
+                break;
+            }
+            int x = *kn.lower_bound(h[i]);
+            ans+=x;
+            kn.erase(kn.lower_bound(h[i]));
         }
-    }
-}
-
-int32_t main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    // #ifndef ONLINE_JUDGE
-    // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
-    // #endif
-    int t = 1;
-    // cin >> t;
-
-    while (t--)
-    {
-        solve();
+        if(ok) cout<<ans<<endl;
+        }
     }
     return 0;
 }

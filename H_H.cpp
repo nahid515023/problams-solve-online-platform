@@ -5,27 +5,42 @@ using namespace std;
 void solve()
 {
     int n;
-    cin >> n;
-    int ar[n];
-    for (int i = 0; i < n; i++)
+    cin>>n;
+
+
+    int a[n];
+    int b[n];
+    int c[n];
+    a[0]=0;
+    b[n-1]=0;
+
+    for(int i=1;i<n;i++)
     {
-        cin >> ar[i];
+        cin>>a[i];
+        a[i]+=a[i-1];
     }
-    int ans = 1;
-    int cnt = 1;
-    for (int i = 1; i < n; i++)
+    for(int i=0;i<n-1;i++)
     {
-        if (ar[i] == ar[i - 1])
-        {
-            cnt++;
-        }
-        else
-        {
-            cnt = 1;
-        }
-        ans += cnt;
+        cin>>b[i];
     }
-    cout << ans << endl;
+
+    for(int i=0;i<n;i++)
+     cin>>c[i];
+
+    for(int i=n-2;i>=0;i--)
+    {
+        b[i]+=b[i+1];
+    }
+
+
+    vector<int>aa;
+     for(int i=0;i<n;i++)
+    {
+        int x = a[i]+b[i]+c[i];
+        aa.push_back(x);
+    }
+    sort(aa.begin(),aa.end());
+    cout<<aa[0]+aa[1]<<endl;
 }
 
 int32_t main()

@@ -4,31 +4,31 @@ using namespace std;
 
 void solve()
 {
-    int n, a, b;
-    cin >> n >> a >> b;
-    int s = 0;
-    for (int i = 0; i < n; i++)
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    int x = find(s.begin(),s.end(),'8')-s.begin();
+    if(n-x>=11)
     {
-        int x;
-        cin >> x;
-        if (i >= a && i <= b)
-        {
-            s += x;
-        }
+        cout<<"YES"<<endl;
     }
-    cout << s << endl;
+    else{
+        cout<<"NO"<<endl;
+    }
+
 }
 
 int32_t main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    // #ifndef ONLINE_JUDGE
-    // freopen("input.txt", "r", stdin);
+// #ifndef ONLINE_JUDGE
+   // freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
-    // #endif
+// #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();
