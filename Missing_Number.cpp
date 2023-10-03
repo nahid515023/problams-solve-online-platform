@@ -6,17 +6,15 @@ void solve()
 {
     int n;
     cin>>n;
-    string s;
-    cin>>s;
-    int x = find(s.begin(),s.end(),'8')-s.begin();
-    if(n-x>=11)
+    int x = n*(n+1)/2;
+    int s=0;
+    for(int i=0;i<n-1;i++)
     {
-        cout<<"YES"<<endl;
+        int a;
+        cin>>a;
+        s+=a;
     }
-    else{
-        cout<<"NO"<<endl;
-    }
-
+    cout<<x-s<<endl;
 }
 
 int32_t main()
@@ -24,11 +22,11 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 // #ifndef ONLINE_JUDGE
-//    freopen("input.txt", "r", stdin);
+   // freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
 // #endif
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

@@ -4,19 +4,25 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin>>n;
     string s;
     cin>>s;
-    int x = find(s.begin(),s.end(),'8')-s.begin();
-    if(n-x>=11)
+    int ans=1;
+    int i=1;
+    int cnt=1;
+    while (i<s.size())
     {
-        cout<<"YES"<<endl;
+        if(s[i]!=s[i-1])
+        {
+            ans = max(ans,cnt);
+            cnt=1;
+        }
+        else{
+            cnt+=1;
+        }
+        i++;
     }
-    else{
-        cout<<"NO"<<endl;
-    }
-
+    ans = max(ans,cnt);
+    cout<<ans<<endl;
 }
 
 int32_t main()
@@ -24,11 +30,11 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 // #ifndef ONLINE_JUDGE
-//    freopen("input.txt", "r", stdin);
+   // freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
 // #endif
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

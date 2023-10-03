@@ -4,19 +4,26 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin>>n;
-    string s;
-    cin>>s;
-    int x = find(s.begin(),s.end(),'8')-s.begin();
-    if(n-x>=11)
+    int a,b;
+    cin>>a>>b;
+    int x = a+b;
+    if(x%3==0)
     {
-        cout<<"YES"<<endl;
+        if(a==b)
+        {
+            cout<<"YES"<<endl;
+        }
+        else if(min(a,b)>=x/3)
+        {
+            cout<<"YES"<<endl;
+        }
+        else{
+            cout<<"NO"<<endl;
+        }
     }
     else{
         cout<<"NO"<<endl;
     }
-
 }
 
 int32_t main()
@@ -24,7 +31,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 // #ifndef ONLINE_JUDGE
-//    freopen("input.txt", "r", stdin);
+   // freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
 // #endif
     int t = 1;
