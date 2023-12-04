@@ -4,62 +4,55 @@ using namespace std;
 
 void solve()
 {
+    int n, q;
+    cin >> n >> q;
     string s;
     cin >> s;
-    int x, y;
-    cin >> x >> y;
-    int n = s.size();
-    int a[n], b[n];
-    int v = 0, u = 0, aa = 1;
-    for (int i = 0; i < n; i++)
-    {
-        v = (v * 10 + s[i] - '0') % x;
-        a[i] = v;
-        u = (u + (s[n - i - 1] - '0') * aa) % y;
-        aa = (10 * aa) % y;
-        b[n - i - 1] = u;
-    }
+    vector<int> ar(n + 4, 0);
 
-    int inx = -1;
-
-    for (int i = 1; i < n; i++)
+    for (int i = 0; i < n - 2; i++)
     {
-        if (a[i - 1] == b[i] && a[i - 1] == 0 && s[i] != '0')
+        if (s[i] == s[i + 1] || s[i] == s[i + 2] || s[i + 1] == s[i + 2])
         {
-            inx = i;
-            break;
+            ar[i + 1] = 1;
         }
     }
-    if (inx == -1)
+
+    for (int i = 1; i <= n; i++)
     {
-        cout << "NO" << endl;
-        return;
+        ar[i] = ar[i] + ar[i - 1];
     }
 
-    string l = s.substr(0, inx);
-    string r = s.substr(inx, n);
-    set<char> st(l.begin(), l.end());
-    set<char> st2(r.begin(), r.end());
-    if (st.size() == 1 && *st.begin() == '0' || st2.size() == 1 && *st2.begin() == '0')
+    while (q--)
     {
-        cout << "NO" << endl;
-        return;
+        int x, y;
+        cin >> x >> y;
+        if (y - x + 1 < 3)
+        {
+            cout << "NO" << endl;
+        }
+        else
+        {
+            int aa = ar[y - 2] - ar[x - 1];
+            if (aa > 0)
+            {
+                cout << "YES" << endl;
+            }
+            else
+            {
+                cout << "NO" << endl;
+            }
+        }
     }
-    cout << "YES" << endl;
-    cout << l << endl
-         << r << endl;
 }
 
 int32_t main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    // #ifndef ONLINE_JUDGE
     // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
-    // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

@@ -1,34 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
+#define ll long long
 
 void solve()
 {
-    string s, t;
-    cin >> s >> t;
-    int n = s.size();
-    for (int i = 0; i < n; i++)
+    ll n, a, b;
+    cin >> n >> a >> b;
+    ll x = 1;
+
+    while (x <= n)
     {
-        rotate(t.begin(), t.end(), find(t.begin(),t.end(),s[0]));
-        if (t==s)
+        if ((n - x) % b == 0)
         {
-            cout << "YES" << endl;
+            cout << "Yes" << endl;
             return;
         }
+        x *= a;
+        if (a == 1)
+            break;
     }
-    cout<<"NO"<<endl;
+    cout << "No" << endl;
 }
 
-int32_t main()
+int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     // #ifndef ONLINE_JUDGE
-       freopen("input.txt", "r", stdin);
+    // freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

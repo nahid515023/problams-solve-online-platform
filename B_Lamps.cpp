@@ -4,19 +4,26 @@ using namespace std;
 
 void solve()
 {
-    string s, t;
-    cin >> s >> t;
-    int n = s.size();
+    int n;
+    cin >> n;
+    map<int,vector<int>>mp;
     for (int i = 0; i < n; i++)
     {
-        rotate(t.begin(), t.end(), find(t.begin(),t.end(),s[0]));
-        if (t==s)
+        int a, b;
+        cin >> a >> b;
+        mp[a].push_back(b);
+    }
+
+    int ans = 0;
+    for(auto &[x,y]:mp)
+    {
+        sort(y.rbegin(),y.rend());
+        for(int i=0;i<min(x,(int)y.size());i++)
         {
-            cout << "YES" << endl;
-            return;
+            ans+=y[i];
         }
     }
-    cout<<"NO"<<endl;
+    cout<<ans<<endl;
 }
 
 int32_t main()
@@ -24,11 +31,11 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     // #ifndef ONLINE_JUDGE
-       freopen("input.txt", "r", stdin);
+    // freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

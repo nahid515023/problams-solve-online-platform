@@ -6,19 +6,34 @@ void solve()
 {
     int n, k;
     cin >> n >> k;
-    set<int> st;
-    vector<int> v(n);
+
+    vector<int> a(n);
+
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        st.insert(v[i]);
-        
+        int x;
+        cin >> x;
+        a[i] = x;
     }
-    if(st.size()<=k){
-        cout<<0<<endl;
+
+    vector<int> ar(n,0);
+    multiset<int> ms;
+
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
+        ms.insert(x);
     }
-    else{
-        
+
+    for(int i=0;i<n;i++)
+    {
+        auto it = ms.find(a[i]);
+        if(it!=ms.end())
+        {
+            ar[i]=a[i];
+            ms.erase(it);
+        }
     }
 }
 
@@ -31,7 +46,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

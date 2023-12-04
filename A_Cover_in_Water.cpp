@@ -4,21 +4,35 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    set<int> st;
-    vector<int> v(n);
+    int n;
+    cin >> n;
+    int cnt = 0;
+    int x = 0;
+    int tot = 0;
+
+    string s;
+    cin >> s;
+
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        st.insert(v[i]);
-        
+        if (s[i] == '.')
+        {
+            x++;
+            tot++;
+            cnt = max(cnt, x);
+        }
+        else
+        {
+            x = 0;
+        }
     }
-    if(st.size()<=k){
-        cout<<0<<endl;
+    if (cnt > 2)
+    {
+        cout << 2 << endl;
     }
-    else{
-        
+    else
+    {
+        cout << tot << endl;
     }
 }
 
@@ -31,7 +45,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

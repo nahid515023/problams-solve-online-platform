@@ -6,19 +6,28 @@ void solve()
 {
     int n, k;
     cin >> n >> k;
-    set<int> st;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    vector<int> v(26);
+    string s;
+    cin >> s;
+    for (char ch : s)
     {
-        cin >> v[i];
-        st.insert(v[i]);
-        
+        v[ch - 'a']++;
     }
-    if(st.size()<=k){
-        cout<<0<<endl;
+
+    int odd = 0;
+    for (int i = 0; i < 26; i++)
+    {
+        if (v[i] % 2 == 1)
+            odd++;
     }
-    else{
-        
+
+    if (odd - 1 > k)
+    {
+        cout << "NO" << endl;
+    }
+    else
+    {
+        cout << "YES" << endl;
     }
 }
 
@@ -31,7 +40,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

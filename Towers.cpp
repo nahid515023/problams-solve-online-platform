@@ -2,24 +2,33 @@
 using namespace std;
 #define int long long
 
+bool cmp(pair<int, int> &a, pair<int, int> &b)
+{
+    return a.second < b.second;
+}
+
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    set<int> st;
-    vector<int> v(n);
+    int n;
+    cin >> n;
+    multiset<int> st;
+    int ans = 0;
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        st.insert(v[i]);
-        
+        int a;
+        cin >> a;
+        auto it = st.upper_bound(a);
+        if (it == st.end())
+        {
+            ans++;
+        }
+        else
+        {
+            st.erase(it);
+        }
+        st.insert(a);
     }
-    if(st.size()<=k){
-        cout<<0<<endl;
-    }
-    else{
-        
-    }
+    cout << ans << endl;
 }
 
 int32_t main()

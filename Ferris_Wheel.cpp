@@ -4,22 +4,29 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    set<int> st;
+    int n, x;
+    cin >> n >> x;
     vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    for (auto &a : v)
+        cin >> a;
+    sort(v.begin(),v.end());
+    int l=0,h=n-1;
+    int cnt=0;
+    while (l<=h)
     {
-        cin >> v[i];
-        st.insert(v[i]);
-        
+        int s=v[l]+v[h];
+        if(s>x)
+        {
+            cnt++;
+            h--;
+        }
+        else{
+            cnt++;
+            l++;
+            h--;
+        }
     }
-    if(st.size()<=k){
-        cout<<0<<endl;
-    }
-    else{
-        
-    }
+    cout<<cnt<<endl;
 }
 
 int32_t main()

@@ -4,22 +4,24 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    set<int> st;
-    vector<int> v(n);
+    int q, n;
+    cin >> q >> n;
+    int ar[n];
     for (int i = 0; i < n; i++)
+        ar[i] = 0;
+
+    while (q--)
     {
-        cin >> v[i];
-        st.insert(v[i]);
-        
+        int l, r;
+        cin >> l >> r;
+        l--;
+        r--;
+        for (int i = l; i <= r; i++)
+            ar[i]++;
     }
-    if(st.size()<=k){
-        cout<<0<<endl;
-    }
-    else{
-        
-    }
+    for(int i=0;i<n;i++) ar[i]
+    auto x = minmax_element(ar, ar + n);
+    cout << x.second - x.first << endl;
 }
 
 int32_t main()
@@ -31,7 +33,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

@@ -4,21 +4,26 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    set<int> st;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    int n;
+    cin >> n;
+    int x = 1;
+    int y = 2;
+    int z = n - 3;
+
+    if (z % 3 == 0)
     {
-        cin >> v[i];
-        st.insert(v[i]);
-        
+        y += 2;
+        z -= 2;
     }
-    if(st.size()<=k){
-        cout<<0<<endl;
+
+    if (x == z || y == z || y == x || z<1)
+    {
+        cout << "NO" << endl;
     }
-    else{
-        
+    else
+    {
+        cout << "YES" << endl;
+        cout << x << " " << y << " " << z << endl;
     }
 }
 
@@ -31,7 +36,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

@@ -1,25 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+const int mod = 1e9 + 7;
+
+int binPow(int a, int b)
+{
+    if (b == 0)
+        return 1;
+    int res = binPow(a, b / 2);
+    if (b & 1)
+    {
+        res = (((res * res) % mod) * a) % mod;
+    }
+    else
+    {
+        res = (res * res) % mod;
+    }
+    return res;
+}
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    set<int> st;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> v[i];
-        st.insert(v[i]);
-        
-    }
-    if(st.size()<=k){
-        cout<<0<<endl;
-    }
-    else{
-        
-    }
+    int a, b;
+    cin >> a >> b;
+    int x = binPow(a, b);
+    cout << x << endl;
 }
 
 int32_t main()
@@ -31,7 +36,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();
