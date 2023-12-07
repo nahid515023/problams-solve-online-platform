@@ -4,21 +4,28 @@ using namespace std;
 
 void solve()
 {
-    int n, p, l, t;
-    cin >> n >> p >> l >> t;
-    int tot = l+t;
-    int x =(p/tot);
-    if(p%tot!=0) x++;
-    int y = (n/7)+1;
-    if(x<=y){
-        cout<<n-x<<endl;
+    int n, p, x, y;
+    cin >> n >> p >> x >> y;
+
+    int minDay = 0;
+
+    int l = 0, h = n;
+
+    while (l <= h)
+    {
+        int m = (l + h) / 2;
+        int a = (min(m*2, ((n + 6) / 7)) * y) + (x * m);
+        if (a >= p)
+        {
+            minDay = m;
+            h = m - 1;
+        }
+        else
+        {
+            l = m + 1;
+        }
     }
-    else{
-        n-=x;
-        p-=(x*tot);
-        n-=ceil(p/l);
-        cout<<n<<endl;
-    }
+    cout << n - minDay << endl;
 }
 
 int32_t main()
@@ -26,7 +33,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     // #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
+    // freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
