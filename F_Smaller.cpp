@@ -4,7 +4,7 @@ using namespace std;
 
 void solve()
 {
-    vector<ll> s(26, 0), t(26, 0);
+    vector<ll> s(27, 0), t(27, 0);
     s[0] = 1;
     t[0] = 1;
     int q;
@@ -30,19 +30,41 @@ void solve()
         }
 
         bool ok = 0;
+        int l = 0, r = 25;
 
-        for (int i = 25; i >= 0; i--)
+        while (l < r)
         {
-            if (s[i] < t[i])
+            while (s[l] == 0)
+            {
+                l++;
+            }
+            while (t[r] == 0)
+            {
+                r--;
+            }
+
+            if (r > l)
             {
                 ok = 1;
                 break;
             }
-            else if (s[i] > t[i])
+        }
+        if (l == r)
+        {
+            if (s[l] < t[r])
             {
-                break;
+                ok = 1;
+            }
+            for (int i = l + 1; i <= 25; i++)
+            {
+                if (s[i] != 0)
+                {
+                    ok = 0;
+                    break;
+                }
             }
         }
+
         if (ok)
             cout << "YES" << endl;
         else
