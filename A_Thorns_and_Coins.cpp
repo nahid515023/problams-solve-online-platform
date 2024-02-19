@@ -6,23 +6,20 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<vector<int>> v;
+    string s;
+    cin >> s;
+    int cnt = 0;
     for (int i = 0; i < n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
-    }
-    sort(v.begin(), v.end());
+        if (s[i] == '@')
+            cnt++;
 
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
-    {
-        f += v[i][0];
-        ans += (v[i][1] - f);
+        if (s[i] == '*' && i + 1 < n && s[i + 1] == '*')
+        {
+            break;
+        }
     }
-    cout << ans << endl;
+    cout << cnt << endl;
 }
 
 int32_t main()
@@ -34,7 +31,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

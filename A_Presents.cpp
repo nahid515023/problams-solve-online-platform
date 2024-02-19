@@ -6,23 +6,18 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<vector<int>> v;
-    for (int i = 0; i < n; i++)
+    vector<int> v(n + 1);
+    for (int i = 1; i <= n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
+        int x;
+        cin >> x;
+        v[x] = i;
     }
-    sort(v.begin(), v.end());
-
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
-        f += v[i][0];
-        ans += (v[i][1] - f);
+        cout << v[i] << " ";
     }
-    cout << ans << endl;
+    cout << endl;
 }
 
 int32_t main()

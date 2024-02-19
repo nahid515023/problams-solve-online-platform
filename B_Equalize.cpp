@@ -6,21 +6,22 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<vector<int>> v;
-    for (int i = 0; i < n; i++)
-    {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
-    }
+    vector<int> v(n);
+    for (auto &x : v)
+        cin >> x;
+
     sort(v.begin(), v.end());
 
-    int f = 0;
+    auto it = unique(v.begin(), v.end());
+    v.resize(distance(v.begin(), it));
     int ans = 0;
-    for (int i = 0; i < n; i++)
+    for (auto x : v)
     {
-        f += v[i][0];
-        ans += (v[i][1] - f);
+        int l = lower_bound(v.begin(), v.end(), x) - v.begin();
+        int r = upper_bound(v.begin(), v.end(), x + n - 1) - v.begin();
+        int a = r - l;
+        ans = max(a, ans);
+        // cout << a << " ";
     }
     cout << ans << endl;
 }
@@ -34,7 +35,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

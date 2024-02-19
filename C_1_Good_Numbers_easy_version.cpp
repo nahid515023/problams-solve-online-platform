@@ -2,27 +2,29 @@
 using namespace std;
 #define int long long
 
+int f(int i)
+{
+    if (i == 0)
+        return 1;
+    if (i % 3 == 2)
+        return 0;
+    return f(i / 3);
+}
+
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<vector<int>> v;
-    for (int i = 0; i < n; i++)
-    {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
-    }
-    sort(v.begin(), v.end());
+    int a;
+    cin >> a;
 
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
+    while (true)
     {
-        f += v[i][0];
-        ans += (v[i][1] - f);
+        if (f(a))
+        {
+            cout << a << endl;
+            return;
+        }
+        a++;
     }
-    cout << ans << endl;
 }
 
 int32_t main()
@@ -34,7 +36,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

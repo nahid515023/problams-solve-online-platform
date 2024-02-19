@@ -4,25 +4,18 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<vector<int>> v;
-    for (int i = 0; i < n; i++)
+    vector<pair<int, int>> v;
+    for (int i = 0; i < 4; i++)
     {
         int x, y;
         cin >> x >> y;
         v.push_back({x, y});
     }
     sort(v.begin(), v.end());
-
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
-    {
-        f += v[i][0];
-        ans += (v[i][1] - f);
-    }
-    cout << ans << endl;
+    int x = v[0].first - v[1].first;
+    int y = v[0].second - v[1].second;
+    int a = sqrt(x * x + y * y);
+    cout << a * a << endl;
 }
 
 int32_t main()
@@ -34,7 +27,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

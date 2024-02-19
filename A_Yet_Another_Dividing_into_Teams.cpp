@@ -6,21 +6,18 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<vector<int>> v;
-    for (int i = 0; i < n; i++)
-    {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
-    }
+    vector<int> v(n);
+    for (auto &x : v)
+        cin >> x;
     sort(v.begin(), v.end());
-
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
+    int ans = 1;
+    for (int i = 1; i < n; i++)
     {
-        f += v[i][0];
-        ans += (v[i][1] - f);
+        if (v[i - 1] + 1 == v[i])
+        {
+            ans = 2;
+            break;
+        }
     }
     cout << ans << endl;
 }
@@ -34,7 +31,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

@@ -6,23 +6,31 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<vector<int>> v;
+    string ar[n];
     for (int i = 0; i < n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
+        cin >> ar[i];
     }
-    sort(v.begin(), v.end());
 
-    int f = 0;
-    int ans = 0;
     for (int i = 0; i < n; i++)
     {
-        f += v[i][0];
-        ans += (v[i][1] - f);
+        int c = 0;
+        for (int j = 0; j < n; j++)
+        {
+            if (ar[i][j] == '1')
+            {
+                // cout << ar[i][j] << " ";
+                c++;
+            }
+        }
+        // cout << endl;
+        if (c == 1)
+        {
+            cout << "TRIANGLE" << endl;
+            return;
+        }
     }
-    cout << ans << endl;
+    cout << "SQUARE" << endl;
 }
 
 int32_t main()
@@ -34,7 +42,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

@@ -4,25 +4,25 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<vector<int>> v;
+    int n, f, a, b;
+    cin >> n >> f >> a >> b;
+    vector<int> v(n);
+    for (auto &x : v)
+        cin >> x;
+    int p = 0;
     for (int i = 0; i < n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
+        int x = (v[i] - p) * a;
+        int mi = min(x, b);
+        f -= mi;
+        p = v[i];
+        if (f <= 0)
+        {
+            cout << "NO" << endl;
+            return;
+        }
     }
-    sort(v.begin(), v.end());
-
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
-    {
-        f += v[i][0];
-        ans += (v[i][1] - f);
-    }
-    cout << ans << endl;
+    cout << "YES" << endl;
 }
 
 int32_t main()
@@ -34,7 +34,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

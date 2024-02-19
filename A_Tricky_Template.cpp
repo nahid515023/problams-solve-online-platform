@@ -6,23 +6,17 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<vector<int>> v;
+    string a, b, c;
+    cin >> a >> b >> c;
     for (int i = 0; i < n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
+        if ((a[i] != b[i] && a[i] != c[i] && b[i] != c[i]) || (a[i] == b[i] && (a[i] != c[i])))
+        {
+            cout << "YES" << endl;
+            return;
+        }
     }
-    sort(v.begin(), v.end());
-
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
-    {
-        f += v[i][0];
-        ans += (v[i][1] - f);
-    }
-    cout << ans << endl;
+    cout << "NO" << endl;
 }
 
 int32_t main()
@@ -34,7 +28,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

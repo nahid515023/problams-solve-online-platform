@@ -2,27 +2,40 @@
 using namespace std;
 #define int long long
 
+bool sortbyCond(const pair<double, double> &a, const pair<double, double> &b)
+{
+    if (a.first != b.first)
+        return (a.first < b.first);
+    else
+        return (a.second > b.second);
+}
+
 void solve()
 {
     int n;
     cin >> n;
-    vector<vector<int>> v;
+    vector<pair<int, int>> v;
     for (int i = 0; i < n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
+        int x;
+        cin >> x;
+        v.push_back({x, i});
     }
-    sort(v.begin(), v.end());
 
-    int f = 0;
+    sort(v.rbegin(), v.rend(), sortbyCond);
+
+    int ar[n + 5];
     int ans = 0;
     for (int i = 0; i < n; i++)
     {
-        f += v[i][0];
-        ans += (v[i][1] - f);
+        ans += (v[i].first * i + 1);
     }
     cout << ans << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << v[i].second+1 << " ";
+    }
+    cout << endl;
 }
 
 int32_t main()

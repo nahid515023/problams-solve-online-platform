@@ -6,23 +6,22 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<vector<int>> v;
+    int ar[n];
     for (int i = 0; i < n; i++)
+        cin >> ar[i];
+    int mx = *max_element(ar, ar + n);
+    int cmx = count(ar, ar + n, mx);
+    int k = count(ar, ar + n, mx - 1);
+    int val = 1, s = 1;
+    for (int i = 1; i <= n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
+        val = val * i % 998244353;
+        if (i != k + 1)
+            s = s * i % 998244353;
     }
-    sort(v.begin(), v.end());
-
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
-    {
-        f += v[i][0];
-        ans += (v[i][1] - f);
-    }
-    cout << ans << endl;
+    if (cmx == 1)
+        val = (val - s + 998244353) % 998244353;
+    cout << val << endl;
 }
 
 int32_t main()
@@ -34,7 +33,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

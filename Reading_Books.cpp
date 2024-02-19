@@ -6,23 +6,25 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<vector<int>> v;
+    int ar[n];
     for (int i = 0; i < n; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
+        cin >> ar[i];
     }
-    sort(v.begin(), v.end());
-
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
+    sort(ar, ar + n);
+    int sum = 0;
+    for (int i = 0; i < n - 1; i++)
     {
-        f += v[i][0];
-        ans += (v[i][1] - f);
+        sum += ar[i];
     }
-    cout << ans << endl;
+    if (sum >= ar[n - 1])
+    {
+        cout << sum + ar[n - 1] << endl;
+    }
+    else
+    {
+        cout << sum + ar[n - 1] + (ar[n - 1] - sum) << endl;
+    }
 }
 
 int32_t main()

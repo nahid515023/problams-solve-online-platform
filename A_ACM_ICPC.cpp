@@ -4,25 +4,23 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<vector<int>> v;
-    for (int i = 0; i < n; i++)
+    vector<int> v(6);
+    for (int i = 0; i < 6; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
+        cin >> v[i];
     }
     sort(v.begin(), v.end());
-
-    int f = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
+    do
     {
-        f += v[i][0];
-        ans += (v[i][1] - f);
-    }
-    cout << ans << endl;
+        int x = v[0] + v[1] + v[2];
+        int y = v[3] + v[4] + v[5];
+        if (x == y)
+        {
+            cout << "YES" << endl;
+            return;
+        }
+    } while (next_permutation(v.begin(), v.end()));
+    cout << "NO" << endl;
 }
 
 int32_t main()

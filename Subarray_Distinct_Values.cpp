@@ -4,23 +4,29 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<vector<int>> v;
-    for (int i = 0; i < n; i++)
-    {
-        int x, y;
-        cin >> x >> y;
-        v.push_back({x, y});
-    }
-    sort(v.begin(), v.end());
-
-    int f = 0;
+    int n, k;
+    cin >> n >> k;
+    set<int> st;
+    map<int, int> mp;
+    queue<int> q;
     int ans = 0;
     for (int i = 0; i < n; i++)
     {
-        f += v[i][0];
-        ans += (v[i][1] - f);
+        int a;
+        cin >> a;
+        st.insert(a);
+        q.push(a);
+        mp[a]++;
+        while (st.size() > k)
+        {
+            mp[q.front()]--;
+            if (mp[q.front()] == 0)
+            {
+                st.erase(q.front());
+            }
+            q.pop();
+        }
+        ans += q.size();
     }
     cout << ans << endl;
 }
