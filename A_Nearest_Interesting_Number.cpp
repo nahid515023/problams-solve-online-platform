@@ -2,27 +2,24 @@
 using namespace std;
 #define int long long
 
+int f(int n){
+    int s=0;
+    while(n){
+        s+=(n%10);
+        n/=10;
+    }
+    return s;
+}
+
 void solve()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
+    int n;
+    cin >> n;
+    while (f(n) % 4 != 0)
     {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
-        {
-            j++;
-            cnt++;
-        }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+        n++;
     }
-    cout << ans << endl;
+    cout << n << endl;
 }
 
 int32_t main()
@@ -34,7 +31,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

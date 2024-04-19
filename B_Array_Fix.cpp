@@ -6,24 +6,31 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<int> v(105, 0);
+    vector<int> v(n);
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        v[x]++;
+        cin >> v[i];
     }
-    int mi = 102;
-    for (auto x : v)
+    int i = 0;
+
+    while (i < v.size())
     {
-        if (mi < x)
+        if (is_sorted(v.begin(), v.end()))
         {
-            cout << "NO" << endl;
+            cout << "YES" << endl;
             return;
         }
-        mi = min(mi,x);
+        if (v[i] >= 10)
+        {
+            int x = v[i] % 10;
+            int y = v[i] / 10;
+            v.erase(v.begin() + i);
+            v.insert(v.begin() + i, y);
+            v.insert(v.begin() + i + 1, x);
+        }
+        i++;
     }
-    cout << "YES" << endl;
+    cout << "NO" << endl;
 }
 
 int32_t main()

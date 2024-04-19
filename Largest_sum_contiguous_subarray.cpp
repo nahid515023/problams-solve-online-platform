@@ -4,25 +4,24 @@ using namespace std;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
+    int n;
+    cin >> n;
+    int ar[n];
+    for (int i = 0; i < n; i++)
     {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
-        {
-            j++;
-            cnt++;
-        }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+        cin >> ar[i];
     }
-    cout << ans << endl;
+
+    int mx = 0;
+    int curr = 0;
+    for (int i = 0; i < n; i++)
+    {
+        curr += ar[i];
+        mx = max(curr, mx);
+        if (curr < 0)
+            curr = 0;
+    }
+    cout << mx << endl;
 }
 
 int32_t main()
@@ -34,7 +33,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

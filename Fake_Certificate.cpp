@@ -4,25 +4,27 @@ using namespace std;
 
 void solve()
 {
+    int n;
+    cin >> n;
     string s;
     cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
+    int cnt = 0;
+    int mx = 0;
+    int one = 0;
+    for (int i = 0; i < n; i++)
     {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
+        if (s[i] == '1')
         {
-            j++;
+            cnt = 0;
+            one++;
+        }
+        else
+        {
             cnt++;
         }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+        mx = max(cnt, mx);
     }
-    cout << ans << endl;
+    cout << one + mx << endl;
 }
 
 int32_t main()

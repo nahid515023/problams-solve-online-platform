@@ -4,25 +4,31 @@ using namespace std;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
+    int n;
+    cin >> n;
+    vector<int> v(n + 1, 0);
+    for (int i = 0; i < n; i++)
     {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
-        {
-            j++;
-            cnt++;
-        }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+        int x;
+        cin >> x;
+        v[x]++;
     }
-    cout << ans << endl;
+
+    int one = 0;
+    int i = 0;
+    for (i = 0; i <= n; i++)
+    {
+        if (v[i] == 0)
+            break;
+
+        if (v[i] == 1)
+            one++;
+        if (one == 2)
+        {
+            break;
+        }
+    }
+    cout << i << endl;
 }
 
 int32_t main()

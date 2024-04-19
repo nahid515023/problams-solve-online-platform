@@ -4,29 +4,31 @@ using namespace std;
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    vector<pair<int, int>> v;
+    int n;
+    cin >> n;
+    int ar[n];
     for (int i = 0; i < n; i++)
     {
-        int a;
-        cin >> a;
-        v.push_back({a, i});
+        cin >> ar[i];
     }
-    sort(v.begin(), v.end());
-    int tot = 1;
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < n - 2; i++)
     {
-        if (v[i].second > v[i + 1].second)
+        int m = ar[i];
+        ar[i] -= m;
+        ar[i + 1] -= m * 2;
+        ar[i + 2] -= m;
+        if (ar[i] < 0 || ar[i + 1] < 0 || ar[i + 2] < 0)
         {
-            tot++;
+            cout << "NO" << endl;
+            return;
         }
     }
-    while (m--)
+    if (ar[n - 1] > 0 || ar[n - 2] > 0)
     {
-        int x, y;
-        cin >> x >> y;
+        cout << "NO" << endl;
+        return;
     }
+    cout << "YES" << endl;
 }
 
 int32_t main()
@@ -38,7 +40,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

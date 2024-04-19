@@ -4,10 +4,28 @@ using namespace std;
 
 void solve()
 {
-    int x1, x2, x3, y1, y2, y3;
-    cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
-    int ans=0;
-    if(x2<x)
+    int x, y, a, b, c, d;
+    cin >> x >> y >> a >> b >> c >> d;
+    int ans = 1;
+    if (y < b && y < d)
+    {
+        int h = min(b, d) - y;
+        ans += h;
+    }
+    if (y > b && y > d)
+    {
+        int h = y - max(b, d);
+        ans += h;
+    }
+    if (a > x && c > x)
+    {
+        ans += (min(a, c) - x);
+    }
+    if (a < x && c < x)
+    {
+        ans += (x - max(a, c));
+    }
+    cout << ans << endl;
 }
 
 int32_t main()

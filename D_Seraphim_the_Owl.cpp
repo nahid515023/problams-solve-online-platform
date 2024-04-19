@@ -6,27 +6,27 @@ void solve()
 {
     int n, m;
     cin >> n >> m;
-    vector<pair<int, int>> v;
+    int a[n], b[n];
     for (int i = 0; i < n; i++)
+        cin >> a[i];
+    for (int i = 0; i < n; i++)
+        cin >> b[i];
+    int ans = 1e18;
+    int cnt = 0;
+    for (int i = n - 1; i >= 0; i--)
     {
-        int a;
-        cin >> a;
-        v.push_back({a, i});
-    }
-    sort(v.begin(), v.end());
-    int tot = 1;
-    for (int i = 0; i < n - 1; i++)
-    {
-        if (v[i].second > v[i + 1].second)
+        cnt += min(a[i], b[i]);
+        if (i < m)
         {
-            tot++;
+            if (b[i] < a[i])
+            {
+                ans = min(cnt - b[i] + a[i], ans);
+            }
+            else
+                ans = min(cnt, ans);
         }
     }
-    while (m--)
-    {
-        int x, y;
-        cin >> x >> y;
-    }
+    cout << ans << endl;
 }
 
 int32_t main()
@@ -38,7 +38,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

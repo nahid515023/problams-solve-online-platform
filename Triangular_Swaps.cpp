@@ -4,25 +4,26 @@ using namespace std;
 
 void solve()
 {
+    int n;
+    cin >> n;
     string s;
     cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
+    int ans = n - 2;
+    string p = "";
+    int ok=0;
+    for (int i = 0; i < n; i++)
     {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
+        if (i + 2 < n && s[i] == s[i + 1] && s[i] == s[i + 2])
         {
-            j++;
-            cnt++;
+            ans--;
+            ok=1;
         }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+        if (i > 2 && s[i] != s[i - 1] && s[i] == s[i - 2] && s[i] == s[i - 3])
+        {
+            ans--;
+        }
     }
-    cout << ans << endl;
+    cout << ans+ok << endl;
 }
 
 int32_t main()

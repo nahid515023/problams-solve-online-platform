@@ -4,23 +4,21 @@ using namespace std;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
     {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
-        {
-            j++;
-            cnt++;
-        }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+        cin >> v[i];
+    }
+    int pre[n + 5] = {0};
+    int pr = 0;
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+    {
+        pre[i] = v[i] + pr;
+        pr = pre[i];
+        ans = max(ans, pr + v[i]);
     }
     cout << ans << endl;
 }

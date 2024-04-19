@@ -4,23 +4,34 @@ using namespace std;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
+    int k, n, a, b;
+    cin >> k >> n >> a >> b;
+
+    int l = 0, r = (k / a) - (k % a == 0);
+    int ans = -1;
+
+    if (r >= n)
     {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
+        cout << n << endl;
+        return;
+    }
+
+    while (l <= r)
+    {
+        int m = (l + r) / 2;
+
+        int ex = (k - (m * a));
+        int x = (ex / b) - (ex % b == 0);
+
+        if (m + x >= n)
         {
-            j++;
-            cnt++;
+            ans = m;
+            l = m + 1;
         }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+        else
+        {
+            r = m - 1;
+        }
     }
     cout << ans << endl;
 }

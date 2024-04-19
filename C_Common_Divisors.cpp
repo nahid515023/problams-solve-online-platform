@@ -4,29 +4,34 @@ using namespace std;
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    vector<pair<int, int>> v;
+    int n;
+    cin >> n;
+    int gc;
     for (int i = 0; i < n; i++)
     {
         int a;
         cin >> a;
-        v.push_back({a, i});
-    }
-    sort(v.begin(), v.end());
-    int tot = 1;
-    for (int i = 0; i < n - 1; i++)
-    {
-        if (v[i].second > v[i + 1].second)
+        if (i == 0)
         {
-            tot++;
+            gc = a;
+            continue;
+        }
+        gc = __gcd(a, gc);
+    }
+
+    int ans = 0;
+    // cout << gc << endl;
+
+    for (int i = 1; i * i <= gc; i++)
+    {
+        if (gc % i == 0)
+        {
+            ans += 1;
+            if ((gc / i) != i)
+                ans += 1;
         }
     }
-    while (m--)
-    {
-        int x, y;
-        cin >> x >> y;
-    }
+    cout << ans << endl;
 }
 
 int32_t main()

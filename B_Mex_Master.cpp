@@ -4,28 +4,35 @@ using namespace std;
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    vector<pair<int, int>> v;
+    int n;
+    cin >> n;
+    int zero = 0, other = 0, one = 0;
+
     for (int i = 0; i < n; i++)
     {
         int a;
         cin >> a;
-        v.push_back({a, i});
+        if (a == 0)
+            zero++;
+        else
+            other++;
+
+        if (a == 1)
+            one++;
     }
-    sort(v.begin(), v.end());
-    int tot = 1;
-    for (int i = 0; i < n - 1; i++)
+
+    if (zero <= other + 1)
     {
-        if (v[i].second > v[i + 1].second)
+        cout << 0 << endl;
+    }
+    else
+    {
+        if (other == one && zero != n)
         {
-            tot++;
+            cout << 2 << endl;
         }
-    }
-    while (m--)
-    {
-        int x, y;
-        cin >> x >> y;
+        else
+            cout << 1 << endl;
     }
 }
 
@@ -38,7 +45,7 @@ int32_t main()
     // freopen("output.txt", "w", stdout);
     // #endif
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--)
     {
         solve();

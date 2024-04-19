@@ -4,23 +4,22 @@ using namespace std;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
+    int a, b, c;
+    cin >> a >> b >> c;
+
+    int ans = a;
+    int mi = (3 - (b % 3));
+    if (mi > c && mi != 3)
     {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
-        {
-            j++;
-            cnt++;
-        }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+        cout << -1 << endl;
+        return;
+    }
+    if(mi==3) mi=0;
+    ans += (b + mi) / 3;
+    ans += (c - mi) / 3;
+    if ((c - mi) % 3 != 0)
+    {
+        ans += 1;
     }
     cout << ans << endl;
 }

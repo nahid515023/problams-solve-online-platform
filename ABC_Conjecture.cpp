@@ -5,25 +5,43 @@ using namespace std;
 void solve()
 {
     int n;
-    cin >> n;
-    vector<int> v(105, 0);
+    string a, b;
+    cin >> a >> b;
+
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        v[x]++;
-    }
-    int mi = 102;
-    for (auto x : v)
-    {
-        if (mi < x)
+        if ((a[i] == 'b' && b[i] != 'b') || (a[i] != 'b' && b[i] == 'b'))
         {
             cout << "NO" << endl;
             return;
         }
-        mi = min(mi,x);
     }
-    cout << "YES" << endl;
+
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+    if (a != b)
+    {
+        cout << "NO" << endl;
+        return;
+    }
+
+    vector<int> inx;
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] == 'b')
+        {
+            inx.push_back(i);
+        }
+    }
+
+    if (inx.size() == 0)
+    {
+        cout << "NO" << endl;
+        return;
+    }
+
+
+
 }
 
 int32_t main()

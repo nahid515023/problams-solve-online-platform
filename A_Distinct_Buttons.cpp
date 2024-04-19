@@ -5,26 +5,37 @@ using namespace std;
 void solve()
 {
     int n;
-    cin>>n;
-    int ar[n];
-    for(int i=0;i<n;i++)
+    cin >> n;
+    int a = 0, b = 0, c = 0, d = 0;
+    for (int i = 0; i < n; i++)
     {
-        cin>>ar[i];
+        int x, y;
+        cin >> x >> y;
+        if (x > 0)
+            a = 1;
+        if (x < 0)
+            b = 1;
+        if (y > 0)
+            c = 1;
+        if (y < 0)
+            d = 1;
     }
-    for(int i=0;i<n;i++){
-        cout<<ar[i]<<" ";
+    if (a + b + c + d <= 3)
+    {
+        cout << "YES" << endl;
     }
-    cout<<endl;
+    else
+        cout << "NO" << endl;
 }
 
 int32_t main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-// #ifndef ONLINE_JUDGE
-//    freopen("input.txt", "r", stdin);
+    // #ifndef ONLINE_JUDGE
+    //    freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
-// #endif
+    // #endif
     int t = 1;
     cin >> t;
     while (t--)

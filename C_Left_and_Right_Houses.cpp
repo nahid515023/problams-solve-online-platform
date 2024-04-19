@@ -4,25 +4,17 @@ using namespace std;
 
 void solve()
 {
+    int n;
+    cin >> n;
     string s;
     cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
-    {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
-        {
-            j++;
-            cnt++;
-        }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+    int r = count(s.begin(),s.end(),'1');
+    int l=0;
+
+    for(int i=0;i<=n;i++){
+        if(abs())
     }
-    cout << ans << endl;
+   
 }
 
 int32_t main()

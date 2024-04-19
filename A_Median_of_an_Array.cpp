@@ -4,25 +4,21 @@ using namespace std;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int rm = 0;
-    int ans = 1;
-    for (int i = 0; i < n;)
+    int n;
+    cin >> n;
+    int ar[n+3];
+    for (int i = 1; i <= n; i++)
     {
-        int j = i + 1;
-        int cnt=1;
-        while (j < n && s[i] == s[j])
-        {
-            j++;
-            cnt++;
-        }
-        i = j;
-        rm +=1;
-        ans=(ans*cnt)%998244353;
+        cin >> ar[i];
     }
-    cout << ans << endl;
+    sort(ar+1, ar + n+1);
+    int cnt = 0;
+    for (int i = (n + 1) / 2; i <= n; i++)
+    {
+        if (ar[i] == ar[(n + 1) / 2])
+            cnt++;
+    }
+    cout<<cnt<<endl;
 }
 
 int32_t main()

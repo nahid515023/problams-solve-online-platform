@@ -86,81 +86,6 @@ vector<vector<double>> add_cluster(vector<vector<double>> point)
     double totalWightOfCluster = 0;
     vector<pair<double, double>> clusterHead;
 
-    for (int i = 0; i < claster.size(); i++)
-    {
-        double ck_min = 1e18;
-        double ch_x = 0, ch_y = 0;
-        for (auto [xx, yy] : claster[i])
-        {
-            double ds = dist(xx, yy, cen_x, cen_y);
-            if (ck_min > ds)
-            {
-                ch_x = xx;
-                ch_y = yy;
-                ck_min = ds;
-            }
-        }
-        cout << "cluster head :" << ch_x << " " << ch_y << endl;
-        clusterHead.push_back({ch_x, ch_y});
-
-        double wightOfCluster = 0;
-        for (auto [xx, yy] : claster[i])
-        {
-            double ds = dist(xx, yy, ch_x, ch_y);
-            wightOfCluster += ds;
-        }
-        wightOfCluster /= claster[i].size();
-
-        cout << i + 1 << " wightOfCluster :" << wightOfCluster << endl;
-        totalWightOfCluster += wightOfCluster;
-    }
-
-    double ICT = totalWightOfCluster / claster.size();
-    cout << "ICT : " << ICT << endl;
-
-    sort(clusterHead.begin(), clusterHead.end(), sortbyCond);
-
-    double prv_x = 0, prv_y = 0;
-    double ICS = 0;
-    int ck = 0;
-    for (auto [aa, bb] : clusterHead)
-    {
-        if (ck == 0)
-        {
-            prv_x = aa;
-            prv_y = bb;
-            ck = 1;
-            continue;
-        }
-        ICS += dist(prv_x, prv_y, aa, bb);
-        prv_x = aa;
-        prv_y = bb;
-    }
-    ICS += dist(prv_x, prv_y, clusterHead.begin()->first, clusterHead.begin()->second);
-    double IcsAvg = ICS / clusterHead.size();
-    cout << "ICS AVG : " << IcsAvg << endl;
-
-    double cbar = claster.size() / (n * 1.0);
-    // cout << cbar << endl;
-    double sum = 0;
-    for (int i = 0; i < claster.size(); i++)
-    {
-        int cnode = claster[i].size();
-        sum += ((cnode - cbar) * (cnode - cbar));
-    }
-    // cout << sum << endl;
-
-    double stdDeviation = sqrt(sum / claster.size());
-    cout << "std Deviation : " << stdDeviation << endl;
-
-    double total = ICT + IcsAvg + stdDeviation;
-    cout << "Total :" << total << endl;
-    ++lv;
-    if (total < kopt)
-    {
-        kopt = total;
-        level = lv;
-    }
 
     cout << "Number of cluster: " << claster.size() << endl;
     for (auto &aa : claster)
@@ -171,13 +96,12 @@ vector<vector<double>> add_cluster(vector<vector<double>> point)
         }
         cout << endl;
     }
-    // cout << x << " " << y << endl;
     return point;
 }
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
+    // freopen("input.txt", "r", stdin);
     cout << "Enter number of node input : ";
     cin >> n;
     vector<vector<double>> point;
