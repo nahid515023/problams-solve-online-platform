@@ -4,19 +4,19 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int n, k;
+    cin >> n >> k;
     vector<int> v(n);
     for (int i = 0; i < n; i++)
     {
         cin >> v[i];
     }
-    int ans = 0;
-    for (int i = 0; i < n - 1; i++)
-    {
-        ans += (v[i] * v[i + 1]);
-    }
-    cout << ans << endl;
+    sort(v.begin(), v.end());
+
+    int pos = k * (k - 1) / 2;
+
+    int ans = v[pos-1]+v[pos-2];
+    cout<<ans<<endl;
 }
 
 int32_t main()
